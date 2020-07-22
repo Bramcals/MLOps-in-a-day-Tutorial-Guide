@@ -258,10 +258,6 @@ Duration: 25 minutes
 
     ![Review list of registered models that reference dataset in Azure Machine Learning studio.](media/devops-build-outputs-05.png 'Registered dataset model references in Azure Machine Learning studio')
 
-6. @Bram: to be deleted: Log in to the [Azure Portal](https://portal.azure.com), open your **Resource Group, Workspace, Images** section and observe the deployment image created during the build pipeline: `compliance-classifier-image`.
-
-    ![Review deployment image in Azure Portal.](media/devops-build-outputs-06.png 'Images in Azure Portal')
-
 ## Exercise 3: Setup the Release Pipeline
 
 Duration: 20 minutes
