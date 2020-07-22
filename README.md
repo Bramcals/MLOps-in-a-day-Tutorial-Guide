@@ -430,11 +430,11 @@ Duration: 30 minutes
 
 5. Select **Commit**.
 
-    ![Make edits to train.py by changing the learning rate. Select Commit after editing.](media/devops-test-pipelines-01.png 'Edit Train.py')
+    ![Make edits to train.py by changing the learning rate. Select Commit after editing.](media/screenshot-lr-.png 'Edit Train.py')
 
 6. Provide comment: `Improving model performance: changed learning rate.` and select **Commit**.
 
-    ![Provide commit comment for train.py.](media/screenshot-lr-.png 'Commit - Comment')
+    ![Provide commit comment for train.py.](media/devops-test-pipelines-02.png 'Commit - Comment')
 
 ### Task 2: Monitor Build Pipeline
 
