@@ -75,7 +75,7 @@ Duration: 20 minutes
 
     ![Import Quickstart code from a GitHub Repo.](media/devops-project-03.png 'Azure DevOps Repos')
 
-2. Provide the following GitHub URL: `https://github.com/solliancenet/mcw-mlops-starter` and select **Import**. This should import the code required for the quickstart.
+2. Provide the following GitHub URL: `https://github.com/Bramcals/MLOps-starter.git` and select **Import**. This should import the code required for the quickstart.
 
     ![Provide the above GitHub URL and select import to import the source code.](media/devops-project-04.png 'Import a Git repository dialog')
     
