@@ -75,7 +75,7 @@ Duration: 20 minutes
 
     ![Import Quickstart code from a GitHub Repo.](media/devops-project-03.png 'Azure DevOps Repos')
 
-2. Provide the following GitHub URL: `https://github.com/Bramcals/MLOps-starter.git` and select **Import**. This should import the code required for the quickstart.
+2. Provide the following GitHub URL: `https://github.com/Bramcals/MLOps-starter.git` and select **Import**. This should import the code required for the quickstart. @Bram; @Marijn, kan jij checken of de naam van de repo: mlops-quickstart is, en niet mlops-quickstart.git. Anders moeten we dat even wijzigen
 
     ![Provide the above GitHub URL and select import to import the source code.](media/devops-project-04.png 'Import a Git repository dialog')
     
@@ -258,7 +258,7 @@ Duration: 25 minutes
 
     ![Review list of registered models that reference dataset in Azure Machine Learning studio.](media/devops-build-outputs-05.png 'Registered dataset model references in Azure Machine Learning studio')
 
-6. Log in to the [Azure Portal](https://portal.azure.com), open your **Resource Group, Workspace, Images** section and observe the deployment image created during the build pipeline: `compliance-classifier-image`.
+6. @Bram: to be deleted: Log in to the [Azure Portal](https://portal.azure.com), open your **Resource Group, Workspace, Images** section and observe the deployment image created during the build pipeline: `compliance-classifier-image`.
 
     ![Review deployment image in Azure Portal.](media/devops-build-outputs-06.png 'Images in Azure Portal')
 
@@ -304,7 +304,7 @@ Duration: 20 minutes
 
     a. Name: `aks_name` Value: `aks-cluster01`
 
-    b. Name: `aks_region` Value: should be the same region as the region of your Azure Machine Learning workspace (e.g. `eastus`)
+    b. Name: `aks_region` Value: should be the same region as the region of your Azure Machine Learning workspace (probably `westeurope`)
 
     c. Name: `service_name` Value: `compliance-classifier-service`
 
@@ -424,9 +424,9 @@ Duration: 30 minutes
 
 2. **Edit** `train.py`.
 
-3. Change the **learning rate (lr)** for the optimizer from **0.1** to **0.001**.
+3. Change the learning rate **(learning_rate)** of the model from **0.1** to **0.001**.
 
-4. Change the number of training **epochs** from **3** to **5**.
+4. Change the number of estimators **(n_estimators)** from **10** to **30**.
 
 5. Select **Commit**.
 
@@ -434,7 +434,7 @@ Duration: 30 minutes
 
 6. Provide comment: `Improving model performance: changed learning rate.` and select **Commit**.
 
-    ![Provide commit comment for train.py.](media/devops-test-pipelines-02.png 'Commit - Comment')
+    ![Provide commit comment for train.py.](media/screenshot-lr-.png 'Commit - Comment')
 
 ### Task 2: Monitor Build Pipeline
 
