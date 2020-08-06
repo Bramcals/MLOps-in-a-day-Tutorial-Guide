@@ -224,7 +224,7 @@ Duration: 25 minutes
 
 ### Task 3: Review Build Artifacts
 
-1. The build will publish an artifact named `devops-for-ai`. Go to Pipelines -> Click on the 'Build-train-pipeline' pipeline -> Select latest run -> Select **Releated, 1 Published** to review the artifact contents.
+1. The build will publish an artifact named `devops-for-ai`. Go to Pipelines -> Click on the 'Build-train-pipeline' -> Select the latest run -> Select **Releated, 1 Published** to review the artifact contents.
 
     ![Select Artifacts, 1 published to review the artifact contents.](media/screenshot-artifact.png 'Build Artifacts')
 
