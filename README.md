@@ -51,7 +51,7 @@ In this experience you will learn how Contoso Auto can use MLOps to formalize th
 
 ## Exercise 1: Setup New Project in Azure DevOps
 
-Duration: 2000 minutes
+Duration: 20 minutes
 
 ### Task 1: Create New Project
 
@@ -75,7 +75,7 @@ Duration: 2000 minutes
 
     ![Import Quickstart code from a GitHub Repo.](media/devops-project-03.png 'Azure DevOps Repos')
 
-2. Provide the following GitHub URL: `https://github.com/Bramcals/MLOps-starter.git` and select **Import**. This should import the code required for the quickstart. @Bram; @Marijn, kan jij checken of de naam van de repo: mlops-quickstart is, en niet mlops-quickstart.git. Anders moeten we dat even wijzigen
+2. Provide the following GitHub URL: `https://github.com/Bramcals/MLOps-starter.git` and select **Import**. This should import the code required for the quickstart.
 
     ![Provide the above GitHub URL and select import to import the source code.](media/devops-project-04.png 'Import a Git repository dialog')
     
@@ -121,6 +121,15 @@ Duration: 2000 minutes
 
     a. Scope Level: `Machine Learning Workspace`
 
+    >**Note**: If you are unable to select your **Machine Learning Workspace**, do the following steps:
+
+    - Quit the `New Azure service connection` dialog
+    - Refresh or reload the web browser
+    - Perform steps 1 - 3
+    - In step 4, change the `Scope level` to **Subscription** and then select your **Resource group**
+    - Please remember to name your service connection as `quick-starts-sc`
+    - Grant access permission to all pipelines
+
     b. Subscription: Select the Azure subscription to use.
 
     > **Note**: It might take up to 30 seconds for the **Subscription** dropdown to be populated with available subscriptions, depending on the number of different subscriptions your account has access to.
@@ -133,18 +142,9 @@ Duration: 2000 minutes
 
     f. Grant access permission to all pipelines: this checkbox must be selected.
 
-    ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/devops-build-pipeline-06.png 'Add an Azure Resource Manager service connection dialog')
+    ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/devops-build-pipeline-06.png 'Add an Azure Resource Manager service 
 
-     >**Note**: If you are unable to select your **Machine Learning Workspace**, do the following steps:
-
-    - Quit the `New Azure service connection` dialog
-    - Refresh or reload the web browser
-    - Repeat steps 1-3 above
-    - In step 4, change the `Scope level` to **Subscription** and then select your **Resource group**
-    - Please remember to name your service connection as `quick-starts-sc`
-    - Grant access permission to all pipelines
-
-    >**Note**: If you successfully created the new service connection **goto Exercise 2**.
+    **Note**: If you successfully created the new service connection **goto Exercise 2**.
 
 5. Select **Service principal (manual)** and then select **Next**.
 
@@ -224,9 +224,9 @@ Duration: 25 minutes
 
 ### Task 3: Review Build Artifacts
 
-1. The build will publish an artifact named `devops-for-ai`. Select **Artifacts, 1 published** to review the artifact contents.
+1. The build will publish an artifact named `devops-for-ai`. Go to Pipelines -> Click on the 'Build-train-pipeline' pipeline -> Select latest run -> Select **Releated, 1 Published** to review the artifact contents.
 
-    ![Select Artifacts, 1 published to review the artifact contents.](media/devops-build-pipeline-14.png 'Build Artifacts')
+    ![Select Artifacts, 1 published to review the artifact contents.](media/screenshot-artifact 'Build Artifacts')
 
 2. Select **outputs, eval_info.json** and then select the download arrow. The `eval_info.json` is the output from the *model evaluation* step and the information from the evaluation step will be later used in the release pipeline to deploy the model. Select the back arrow to return to the previous screen.
 
