@@ -51,7 +51,7 @@ In this experience you will learn how Contoso Auto can use MLOps to formalize th
 
 ## Exercise 1: Setup New Project in Azure DevOps
 
-Duration: 20 minutes
+Duration: 2000 minutes
 
 ### Task 1: Create New Project
 
