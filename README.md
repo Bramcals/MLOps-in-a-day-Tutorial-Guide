@@ -226,7 +226,7 @@ Duration: 25 minutes
 
 1. The build will publish an artifact named `devops-for-ai`. Go to Pipelines -> Click on the 'Build-train-pipeline' pipeline -> Select latest run -> Select **Releated, 1 Published** to review the artifact contents.
 
-    ![Select Artifacts, 1 published to review the artifact contents.](media/screenshot-artifact 'Build Artifacts')
+    ![Select Artifacts, 1 published to review the artifact contents.](media/screenshot-artifact.png 'Build Artifacts')
 
 2. Select **outputs, eval_info.json** and then select the download arrow. The `eval_info.json` is the output from the *model evaluation* step and the information from the evaluation step will be later used in the release pipeline to deploy the model. Select the back arrow to return to the previous screen.
 
