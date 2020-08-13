@@ -2,6 +2,22 @@
 
 ## AI, Experience 6 - MLOps with Azure Machine Learning and Azure DevOps
 
+## Scenario overview
+
+In this experience you will learn how Contoso Auto can use MLOps to formalize the process of training and deploying new models using a DevOps approach.
+The Contoso Corporation is a fictional but representative global manufacturing conglomerate. In this tutorial we will use a train script that has already been built to create a model that will predict whether a car is a complicance car. So does the car meet tightening government regulations for low-emission vehicles. The dataset contains informatiion about the condition of car components, type of material and its manufacturing year. 
+
+## Technology overview
+
+Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, which improves the quality and consistency of your machine learning solutions. Azure Machine Learning Service provides the following MLOps capabilities:
+
+- Integration with Azure Pipelines. Define continuous integration and deployment workflows for your models.
+- A model registry that maintains multiple versions of your trained models.
+- Model validation. Automatically validate your trained models and select the optimal configuration for deploying them into production.
+- Deploy your models as a web service in the cloud, locally, or to IoT Edge devices.
+- Monitor your deployed model's performance, so you can drive improvements in the next version of the model.
+
+
 - [Data &amp; AI Tech Immersion Workshop – Product Review Guide and Lab Instructions](#data-amp-ai-tech-immersion-workshop-%e2%80%93-product-review-guide-and-lab-instructions)
   - [AI, Experience 6 - MLOps with Azure Machine Learning and Azure DevOps](#ai-experience-6---mlops-with-azure-machine-learning-and-azure-devops)
   - [Technology overview](#technology-overview)
@@ -35,19 +51,6 @@
   - [Wrap-up](#wrap-up)
   - [Additional resources and more information](#additional-resources-and-more-information)
 
-## Technology overview
-
-Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, which improves the quality and consistency of your machine learning solutions. Azure Machine Learning Service provides the following MLOps capabilities:
-
-- Integration with Azure Pipelines. Define continuous integration and deployment workflows for your models.
-- A model registry that maintains multiple versions of your trained models.
-- Model validation. Automatically validate your trained models and select the optimal configuration for deploying them into production.
-- Deploy your models as a web service in the cloud, locally, or to IoT Edge devices.
-- Monitor your deployed model's performance, so you can drive improvements in the next version of the model.
-
-## Scenario overview
-
-In this experience you will learn how Contoso Auto can use MLOps to formalize the process of training and deploying new models using a DevOps approach.
 
 ## Exercise 1: Setup New Project in Azure DevOps
 
@@ -95,7 +98,7 @@ Duration: 20 minutes
 
 1. Select and open the `azure-pipelines.yml` file.
 
-2. Select **Edit** and update the following variables: `resourcegroup`, and `workspace`. If you are using your own Azure subscription, please provide names to use. If an environment is provided to you, be sure to replace XXXXX in the values below with your unique identifier. Typically, for the provided environment, the format for the resourcegroup is `tech_immersion_XXXXX` and for workspace is `tech_immersion_aml_XXXXX` where XXXXX is your unique identifier.
+2. Select **Edit** and update the following variables: `resourcegroup`, and `workspace (azure machine learning name)`. Go to your azure portal via portal.azure.com and check the resource group name and AML name that you created prior to this tutorial. 
 
     ![Edit build YAML file and provide your resource group and workspace information.](media/devops-build-pipeline-01.png 'Edit Build YAML file')
 
