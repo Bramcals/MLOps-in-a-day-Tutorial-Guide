@@ -1,7 +1,5 @@
 # Data & AI Tech Immersion Workshop – Product Review Guide and Lab Instructions
 
-## AI, Experience 6 - MLOps with Azure Machine Learning and Azure DevOps
-
 ## Scenario overview
 
 In this experience you will learn how Contoso Auto can use MLOps to formalize the process of training and deploying new models using a DevOps approach.
@@ -17,6 +15,7 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
 - Deploy your models as a web service in the cloud, locally, or to IoT Edge devices.
 - Monitor your deployed model's performance, so you can drive improvements in the next version of the model.
 
+## AI, Experience - MLOps with Azure Machine Learning and Azure DevOps
 
 - [Data &amp; AI Tech Immersion Workshop – Product Review Guide and Lab Instructions](#data-amp-ai-tech-immersion-workshop-%e2%80%93-product-review-guide-and-lab-instructions)
   - [AI, Experience 6 - MLOps with Azure Machine Learning and Azure DevOps](#ai-experience-6---mlops-with-azure-machine-learning-and-azure-devops)
@@ -60,11 +59,13 @@ Duration: 20 minutes
 
 1. Sign in to [Azure DevOps](http://dev.azure.com).
 
-2. Select **New project**.
+2. Create your own organization our your an existing one. As long as its your own organization. Choose your own name when creating a new organization
+
+3. Select **New project**.
 
     ![Create new project in Azure DevOPs.](media/devops-project-01.png 'Create new project')
 
-3. Provide Project Name: `mlops-quickstart` and select **Create**.
+4. Provide Project Name: `mlops-quickstart` and select **Create**.
 
     ![Provide project name in the create new project dialog and then select create.](media/devops-project-02.png 'Create New Project Dialog')
 
@@ -102,7 +103,7 @@ Duration: 20 minutes
 
     ![Edit build YAML file and provide your resource group and workspace information.](media/devops-build-pipeline-01.png 'Edit Build YAML file')
 
-3. Select **Commit** to save your changes.
+3. Select **Commit** to save your changes. If your are asked to create a pull-request, press F5/refresh browser untill pop-up disappears. 
 
     ![Commit your changes to the build YAML file.](media/devops-build-pipeline-02.png 'Commit Build YAML file')
   
@@ -116,7 +117,7 @@ Duration: 20 minutes
 
     ![Select Create Service Connection, Azure Resource Manager.](media/devops-build-pipeline-04.png 'Azure Resource Manager')
 
-3. If an environment is provided to you **goto step #5**. Select **Service principal (automatic)** and then select **Next**.
+3. Select **Service principal (automatic)** and then select **Next**.
 
     ![Select Service principal (automatic), and then select Next.](media/devops-build-pipeline-05.png 'Service principal authentication')
 
@@ -145,11 +146,11 @@ Duration: 20 minutes
 
     f. Grant access permission to all pipelines: this checkbox must be selected.
 
-    ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/devops-build-pipeline-06.png 'Add an Azure Resource Manager service 
+    ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/devops-build-pipeline-06.png 'Add an Azure Resource Manager service')
 
     **Note**: If you successfully created the new service connection **goto Exercise 2**.
 
-5. Select **Service principal (manual)** and then select **Next**.
+<!-- 5. Select **Service principal (manual)** and then select **Next**.
 
     ![Select Service principal (manual), and then select Next.](media/sc_01.png 'Service principal authentication')
 
@@ -171,7 +172,7 @@ Duration: 20 minutes
 
     1. Grant access permission to all pipelines: this checkbox must be selected.
 
-    ![Provide information as shown in the dialog.](media/sc_02.png 'Add an Azure Resource Manager service connection dialog')
+    ![Provide information as shown in the dialog.](media/sc_02.png 'Add an Azure Resource Manager service connection dialog') -->
 
 ## Exercise 2: Setup and Run the Build Pipeline
 
@@ -205,7 +206,9 @@ Duration: 25 minutes
 
     b. Create the AML Compute target to run your master pipeline for model training and model evaluation.
 
-    c. Run the master pipeline. The master pipeline has two steps: (1) Train the machine learning model, and (2) Evaluate the trained machine learning model. The evaluation step evaluates if the new model performance is better than the currently deployed model. If the new model performance is improved, the evaluate step will create a new Image for deployment. The results of the evaluation step will be saved in a file called `eval_info.json` that will be made available for the release pipeline. You can review the code for the master pipeline and its steps in `aml_service/pipelines_master.py`,  `scripts/train.py`, and `scripts/evaluate.py`.
+    c. Run the master pipeline. The master pipeline has two steps: (1) Train the machine learning model, and (2) Evaluate the trained machine learning model. These steps are submitted to AML. On AML we have just created an compute that will execute the two steps. The results of the two steps can be seen in the Azure Machine Learning workspace. In the training step, the model is trained with an XGboosting algorithm.     
+    
+    The evaluation step evaluates if the new model performance is better than the currently deployed model. If the new model performance is improved, the evaluate step will create a new Image for deployment. The results of the evaluation step will be saved in a file called `eval_info.json` that will be made available for the release pipeline. You can review the code for the master pipeline and its steps in `aml_service/pipelines_master.py`,  `scripts/train.py`, and `scripts/evaluate.py`.
 
     d. Publish the build artifacts. The `snapshot of the repository`, `config.json`, and `eval_info.json` files are published as build artifacts and thus can be made available for the release pipeline.
 
