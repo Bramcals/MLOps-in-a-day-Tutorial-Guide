@@ -67,7 +67,7 @@ In order to participate in the MLOps-in-a-day hands-on tutorial for the speciali
     b. An Azure Machine Learning within that Resource Group (preferably a new one)
 3. Postman installed on your machine
 
-If you have already set up these prerequisites, skip the next steps and start at Task 1!
+NOTE!!! If you have already set up these prerequisites, skip the next steps and start at Task 1!
 
 #### DevOps account
 
