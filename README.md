@@ -67,7 +67,7 @@ In order to participate in the MLOps-in-a-day hands-on tutorial for the speciali
     b. An Azure Machine Learning within that Resource Group (preferably a new one)
 3. Postman installed on your machine
 
-NOTE!!! If you have already set up these prerequisites, skip the next steps and start at Task 1!
+NOTE!!! If you have already set up these prerequisites, skip the next steps and continue at Task 1!
 
 #### DevOps account
 
@@ -94,14 +94,15 @@ a. Creating a resource group:
 6. Click on -> Review + Create -> Create
 
 b. Adding Azure Machine Learning to the resource group
-7. Go to Resource Group by clicking on it (visible within Resource Groups)
-8. Click on +Add within the Resource Group
-9. Search for Azure Machine Learning (AML)
-10. Click on Machine Learning (blue icon) and click on create
-11. Check if the correct resource group is selected (the on that you just created) 
-12. Define your workspace name. No longer than 10 Characters, for example: your initials + '-AML'
-13. Set region to 'West Europe' and workspace edition to 'Basic'
-14. Click on -> Review + Create -> create
+
+1. Go to Resource Group by clicking on it (visible within Resource Groups)
+2. Click on +Add within the Resource Group
+3. Search for Azure Machine Learning (AML)
+4. Click on Machine Learning (blue icon) and click on create
+5. Check if the correct resource group is selected (the on that you just created) 
+6. Define your workspace name. No longer than 10 Characters, for example: your initials + '-AML'
+7. Set region to 'West Europe' and workspace edition to 'Basic'
+8. Click on -> Review + Create -> create
 
 Creating AML may take some time. After creating both the Resource Group and AML, remember the names that you choose for these two. You will be needing these in the tutorial.
 
