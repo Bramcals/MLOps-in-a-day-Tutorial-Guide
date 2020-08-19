@@ -71,7 +71,7 @@ In order to participate in the MLOps-in-a-day hands-on tutorial for the speciali
 
 If you have already set up these prerequisites, skip the next steps and start at Task 1!
 
-## DevOps account
+#### DevOps account
 
 A DevOps account can be created by going to the following [link](https://dev.azure.com/). If you already have an account, then you can use that account and create a new organization to complete the tutorial.
 To create an account;
@@ -80,11 +80,11 @@ To create an account;
 2. Use an personal or work email address, can be outlook, gmail, etc.
 3. After creating an account, create an organization, choose any name you like. The project will be created at the start of the technical tutorial.
 
-## Azure account with Subscription
+#### Azure account with Subscription
 
 A free trial subscription can be obtained via the following [link](https://azure.microsoft.com/en-us/free/). Use the same email address that you just used for creating an DevOps account to get your free subscription on Azure. Fill in your personal details and verification by (credit) card. You won't be charged after the free trail unless you choose to upgrade. Before the end of your 30 first days, you'll be notified and have the chance to upgrade and start paying only for the resources you use beyond the free amounts. 
 
-# Creating a resource group and Azure Machine Learning Workspace
+##### Creating a resource group and Azure Machine Learning Workspace
 
 a. Creating a resource group:
 
@@ -107,7 +107,7 @@ b. Adding Azure Machine Learning to the resource group
 
 Creating AML may take some time. After creating both the Resource Group and AML, remember the names that you choose for these two. You will be needing these in the tutorial.
 
-## Download & Install Postman
+#### Download & Install Postman
 
 Download and install postman [link](https://www.postman.com/downloads/). We will be using this program to send a request to a deployed model such that a prediction can be received. 
 
