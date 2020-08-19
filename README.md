@@ -525,14 +525,15 @@ Duration: 30 minutes
 
     ![View deployed webservice in Azure Machine Learning studio.](media/devops-test-pipelines-08.png 'Azure Machine Learning studio - Workspace, Deployments')
 
-## Exercise 5: Pull a request from the model
+## Exercise 5: Pull a request from the model via Postman
 
 In this exercise, you will provide the model with data points and receive a prediction back.
-Duration: 20 minutes 
+
+Duration: 5 minutes
 
 ### Task 1: Get the scoring endpoint
 
-1. Go to the [azure portal](portal.azure.com)
+1. Go to the [azure portal](https://portal.azure.com/)
 2. Open your resource group
 3. Click on you Azure Machine Learning resource
 4. ![Click on lauch now](media/lauch-aml.png 'Azure Machine Learning')
