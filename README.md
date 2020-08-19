@@ -61,7 +61,9 @@ In order to participate in the MLOps-in-a-day hands-on tutorial for the speciali
 
 1. DevOps account.
 2. Azure account with Subscription
+    
     a. With resource group available for use
+    
     b. An Azure Machine Learning within that Resource Group (preferably a new one)
 3. Postman installed on your machine
 
