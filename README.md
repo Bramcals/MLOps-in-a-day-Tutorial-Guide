@@ -517,11 +517,13 @@ Duration: 30 minutes
 
     ![Select Deploy & Test Webservice task to view details.](media/devops-test-pipelines-06.png 'Pipeline Logs')
 
-2. Observe the **Scoring URI** and **API Key** for the deployed webservice. Please note down both the `Scoring URI` and `API Key` for *Exercise 7*.
+2. Observe the **Scoring URI** and **API Key** for the deployed webservice. 
+
+3. Note down both the `Scoring URI` and `API Key` for *Exercise 5*.
 
     ![View Deploy & Test Webservice task logs and note down the Scoring URI of the deployed webservice.](media/devops-test-pipelines-07.png 'Deploy & Test Webservice Task Logs')
 
-3. Log in to Azure Machine Learning studio. Open your **Endpoints** section, and observe the deployed webservice: **compliance-classifier-service**.
+4. Log in to Azure Machine Learning studio. Open your **Endpoints** section, and observe the deployed webservice: **compliance-classifier-service**.
 
     ![View deployed webservice in Azure Machine Learning studio.](media/devops-test-pipelines-08.png 'Azure Machine Learning studio - Workspace, Deployments')
 
@@ -531,12 +533,16 @@ In this exercise, you will provide the model with data points and receive a pred
 
 Duration: 5 minutes
 
-### Task 1: Get the scoring endpoint
+### Task 1: Pull a request from the deployed model via Postman
 
-1. Go to the [azure portal](https://portal.azure.com/)
-2. Open your resource group
-3. Click on you Azure Machine Learning resource
-4. ![Click on lauch now](media/lauch-aml.png 'Azure Machine Learning')
+1. Open Postman (program that you installed prior to this tutorial. If you haven't installed Postman yet, please download and follow the instruction from the following [link](https://www.postman.com/downloads/))
+2. Click the X sign (top left corner)
+![Click on plus sign](media/plus-sign.png 'New request')
+3. Select "GET" a request 
+4. Paste the scoring URI you copied from the previous exercise
+5. Insert the following data: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 2, 5, 6, 4, 3, 1, 34
+6. Press send and examine the output
+7. If the models predicts 0, the car will have compliance, if 1 is predicted, the model predict will not have compliance.
 
 ## Wrap-up
 
