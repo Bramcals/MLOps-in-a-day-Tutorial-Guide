@@ -3,7 +3,7 @@
 ## Scenario overview
 
 In this experience you will learn how Contoso Auto can use MLOps to formalize the process of training and deploying new models using a DevOps approach.
-The Contoso Corporation is a fictional but representative global manufacturing conglomerate. In this tutorial we will use a train script that has already been built to create a model that will predict whether a car is a complicance car. So does the car meet tightening government regulations for low-emission vehicles. The dataset contains informatiion about the condition of car components, type of material and its manufacturing year. 
+The Contoso Corporation is a fictional but representative global manufacturing conglomerate. In this tutorial we will use a train script that has already been built to create a model that will predict whether a car is a complicance car. So does the car meet tightening government regulations for low-emission vehicles. The dataset contains information about the condition of car components, type of material and its manufacturing year. 
 
 ## Technology overview
 
@@ -186,22 +186,22 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
     - Refresh or reload the web browser
     - Perform steps 1 - 3
     - In step 4, change the `Scope level` to **Subscription** and then select your **Resource group**
-    - Please remember to name your service connection as `quick-starts-sc`
+    - Please remember to name your service connection as `quick-start-sc`
     - Grant access permission to all pipelines
 
     b. Subscription: Select the Azure subscription to use.
 
     > **Note**: It might take up to 30 seconds for the **Subscription** dropdown to be populated with available subscriptions, depending on the number of different subscriptions your account has access to.
 
-    c. Resource group: This value should match the value you provided in the `azure-pipelines.yml` file. (Typically, for the provided environment, the format for the resourcegroup is `tech_immersion_XXXXX`.)
+    c. Resource group: This value should match the value you provided in the `azure-pipelines.yml` file.
 
-    d. Machine Learning Workspace: This value should match the value you provided in the `azure-pipelines.yml` file. (Typically, for the provided environment, the format for the workspace is `tech_immersion_aml_XXXXX`.)
+    d. Machine Learning Workspace: This value should match the value you provided in the `azure-pipelines.yml` file.
 
-    e. Service connection name: `quick-starts-sc`
+    e. Service connection name: `quick-start-sc`
 
     f. Grant access permission to all pipelines: this checkbox must be selected.
 
-    ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/devops-build-pipeline-06.png 'Add an Azure Resource Manager service')
+    ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/sc-server-connection.png 'Add an Azure Resource Manager service')
 
     **Note**: If you successfully created the new service connection **goto Exercise 2**.
 
@@ -223,7 +223,7 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
 
     1. Tenant ID: (Lab environment details page: Service Principal Details->Tenant Id)
 
-    1. Service connection name: `quick-starts-sc`
+    1. Service connection name: `quick-start-sc`
 
     1. Grant access permission to all pipelines: this checkbox must be selected.
 
@@ -427,7 +427,7 @@ Duration: 20 minutes
 
     b. **Display name**: `Deploy and Test Webservice`
 
-    c. **Azure subscription**: `quick-starts-sc`
+    c. **Azure subscription**: `quick-start-sc`
 
     > **Note**: This is the service connection we created in Exercise 1 / Task 4.
 
@@ -435,11 +435,10 @@ Duration: 20 minutes
 
     e. **Inline Script**: `python aml_service/deploy.py --service_name $(service_name) --aks_name $(aks_name) --aks_region $(aks_region) --description $(description)`
 
-    ![Setup the Azure CLI task using the information above.](media/devops-release-pipeline-19.png 'Azure CLI Task Dialog')
+    f. Expand **Advanced** and provide **Working Directory:** `$(System.DefaultWorkingDirectory)/_mlops-quickstart/devops-for-ai`.
 
-3. Expand **Advanced** and provide **Working Directory:** `$(System.DefaultWorkingDirectory)/_mlops-quickstart/devops-for-ai`.
+    ![Setup the Azure CLI task using the information above.](media/sc-devops-release-pipeline.png 'Azure CLI Task Dialog')
 
-    ![Provide Working Directory for the Azure CLI task.](media/devops-release-pipeline-20.png 'Azure CLI Task - Working Directory')
 
 Please review the code in `aml_service/deploy.py`. This step will read the `eval_info.json` and if the evaluation step recommended to deploy the new trained model, it will deploy the new model to production in an **Azure Kubernetes Service (AKS)** cluster.
 
@@ -536,9 +535,9 @@ Duration: 5 minutes
 ### Task 1: Pull a request from the deployed model via Postman
 
 1. Open Postman (program that you installed prior to this tutorial. If you haven't installed Postman yet, please download and follow the instruction from the following [link](https://www.postman.com/downloads/))
-2. Click the X sign (top left corner)
+2. Click on the X sign (top left corner)
 ![Click on plus sign](media/plus-sign.png 'New request')
-3. Select "GET" a request 
+3. Select "GET" a request
 4. Paste the scoring URI you copied from the previous exercise
 5. Insert the following data: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 2, 5, 6, 4, 3, 1, 34
 6. Press send and examine the output
