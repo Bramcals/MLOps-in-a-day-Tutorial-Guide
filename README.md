@@ -188,8 +188,11 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
     - Quit the `New Azure service connection` dialog
     - Make sure Cookies are allowed by the browser
     - Refresh or reload the web browser
+    - Click on create new connection 
     - Perform steps 1 - 3 again
-    - In step 4, change the `Scope level` to **Subscription** and then select your **Resource group**
+    - In step 4, change the `Scope level` to **Subscription** 
+    - Then a Microsoft Login windows should appear. Provide your login details
+    - Now, you should be able to select your resource group and AML workspace
     - Please remember to name your service connection as `quick-start-sc`
     - Grant access permission to all pipelines
 
