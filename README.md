@@ -559,7 +559,7 @@ Duration: 5 minutes
 
 2. Click on the X sign (top left corner)
 
-    ![Click on plus sign](media/plus-sign.png 'New request')
+    <!-- ![Click on plus sign](media/plus-sign.png 'New request') -->
 
 3. Select "POST" a request
 
