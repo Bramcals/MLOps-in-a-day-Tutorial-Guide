@@ -46,7 +46,9 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
     - [Task 1: Make Edits to Source Code](#task-1-make-edits-to-source-code)
     - [Task 2: Monitor Build Pipeline](#task-2-monitor-build-pipeline)
     - [Task 3: Monitor Release Pipeline](#task-3-monitor-release-pipeline)
-    - [Task 4: Review Release Pipeline Outputs](#task-4-review-release-pipeline-outputs)
+  - [Exercise 5: Pull a request from the model via Postman](#exercise-5-pull-request)
+    - [Task 1: Get URI and Primary key of model](#task-1-get-uri)
+    - [Task 2: Pull a request from the deployed model via Postman](#task-2-pull-request-in-postman)
   - [Wrap-up](#wrap-up)
   - [Additional resources and more information](#additional-resources-and-more-information)
 
@@ -140,6 +142,7 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
     
     *Note that if you receive an error while importing the repository, please disable the preview feature `New Repos landing pages` and import the GitHub repository from the old UI, as shown in steps #3, #4, and #5 below.*
 
+<!-- 
 3. [Optional] Select **Account settings, Preview features**.
 
     ![The image shows how to navigate to the list of preview features.](media/preview_features-01.png 'Preview features')
@@ -148,7 +151,7 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
 
    ![The image shows a list of preview features and highlights the preview feature, New Repos landing pages.](media/preview_features-02.png 'Disable New Repos landing pages')
 
-5. [Optional] Repeat Step #1 above to import the GitHub repository from the old UI.
+5. [Optional] Repeat Step #1 above to import the GitHub repository from the old UI. -->
 
 ### Task 3: Update the build YAML file
 
@@ -261,8 +264,8 @@ Duration: 25 minutes
 
     b. Create the AML Compute target to run your master pipeline for model training and model evaluation.
 
-    c. Run the master pipeline. The master pipeline has two steps: (1) Train the machine learning model, and (2) Evaluate the trained machine learning model. These steps are submitted to AML. On AML we have just created an compute that will execute the two steps. The results of the two steps can be seen in the Azure Machine Learning workspace. In the training step, the model is trained with an XGboosting algorithm.     
-    
+    c. Run the master pipeline. The master pipeline has two steps: (1) Train the machine learning model, and (2) Evaluate the trained machine learning model. These steps are submitted to AML. On AML we have just created an compute that will execute the two steps. The results of the two steps can be seen in the Azure Machine Learning workspace. In the training step, the model is trained with an XGboosting algorithm.
+
     The evaluation step evaluates if the new model performance is better than the currently deployed model. If the new model performance is improved, the evaluate step will create a new Image for deployment. The results of the evaluation step will be saved in a file called `eval_info.json` that will be made available for the release pipeline. You can review the code for the master pipeline and its steps in `aml_service/pipelines_master.py`,  `scripts/train.py`, and `scripts/evaluate.py`.
 
     d. Publish the build artifacts. The `snapshot of the repository`, `config.json`, and `eval_info.json` files are published as build artifacts and thus can be made available for the release pipeline.
@@ -285,7 +288,7 @@ Duration: 25 minutes
 
 ### Task 3: Review Build Artifacts
 
-1. The build will publish an artifact named `devops-for-ai`. Go to Pipelines -> Click on the 'Build-train-pipeline' -> Select the latest run -> Select **Releated, 1 Published** to review the artifact contents.
+1. The build will publish an artifact named `devops-for-ai`. Go to Pipelines -> Click on the 'mlops-starter' -> Select the latest run -> Select **Releated, 1 Published** to review the artifact contents.
 
     ![Select Artifacts, 1 published to review the artifact contents.](media/screenshot-artifact.png 'Build Artifacts')
 
@@ -343,7 +346,7 @@ Duration: 20 minutes
 
     ![Add a new artifact to the release pipeline.](media/devops-release-pipeline-04.png 'Add an artifact')
 
-2. Select Source type: `Build`, Source (build pipeline): `mlops-quickstart`. *Observe the note that shows that the mlops-quickstart publishes the build artifact named devops-for-ai*. Finally, select **Add**.
+2. Select Source type: `Build`, Source (build pipeline): `mlops-starter`. *Observe the note that shows that the mlops-quickstart publishes the build artifact named devops-for-ai*. Finally, select **Add**.
 
     ![Provide information to add the build artifact.](media/devops-release-pipeline-05.png 'Add a build artifact')
 
@@ -510,7 +513,7 @@ Duration: 30 minutes
 
 2. The release pipeline will run for about 15 minutes. Proceed to the next task when the release pipeline successfully completes.
 
-### Task 4: Review Release Pipeline Outputs
+<!-- ### Task 4: Review Release Pipeline Outputs
 
 1. From the pipeline logs view, select **Deploy & Test Webservice** task to view details.
 
@@ -524,7 +527,7 @@ Duration: 30 minutes
 
 4. Log in to Azure Machine Learning studio. Open your **Endpoints** section, and observe the deployed webservice: **compliance-classifier-service**.
 
-    ![View deployed webservice in Azure Machine Learning studio.](media/devops-test-pipelines-08.png 'Azure Machine Learning studio - Workspace, Deployments')
+    ![View deployed webservice in Azure Machine Learning studio.](media/devops-test-pipelines-08.png 'Azure Machine Learning studio - Workspace, Deployments') -->
 
 ## Exercise 5: Pull a request from the model via Postman
 
@@ -532,16 +535,49 @@ In this exercise, you will provide the model with data points and receive a pred
 
 Duration: 5 minutes
 
-### Task 1: Pull a request from the deployed model via Postman
+### Task 1: Get URI and Primary key of model
+
+1. Open the Azure Machine Learning Platform [link](https://ml.azure.com/). Make sure you are in the Azure Machine Learning workspace that you created for this tutorial.
+
+2. Go to the models tab and click on your latest model.
+
+3. Observe the model that you just created and then click on Endpoints
+
+    ![View model in Azure Machine Learning studio.](media/sc_aml_model.png 'Azure Machine Learning studio - Workspace, Deployments')
+
+4. Click on the Endpoint attached to the model and click on Consume
+
+    ![View endpoint in Azure Machine Learning studio.](media/sc_endpoint_model.png 'Azure Machine Learning studio - endpoints')
+
+5. Observe the URI and the Primary key. You will be needing these two in the next exercise so keep this window open.
+
+    ![View endpoint and key in studio.](media/sc_key_URI.png 'Azure Machine Learning studio - key, endpont')
+
+### Task 2: Pull a request from the deployed model via Postman
 
 1. Open Postman (program that you installed prior to this tutorial. If you haven't installed Postman yet, please download and follow the instruction from the following [link](https://www.postman.com/downloads/))
+
 2. Click on the X sign (top left corner)
-![Click on plus sign](media/plus-sign.png 'New request')
-3. Select "GET" a request
-4. Paste the scoring URI you copied from the previous exercise
-5. Insert the following data: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 2, 5, 6, 4, 3, 1, 34
-6. Press send and examine the output
-7. If the models predicts 0, the car will have compliance, if 1 is predicted, the model predict will not have compliance.
+
+    ![Click on plus sign](media/plus-sign.png 'New request')
+
+3. Select "POST" a request
+
+4. Paste the scoring URI you copied from the previous task
+
+5. Go to the authorizaton tab, choose the Bearer Token as type as paste the primary key from the previous task as token.
+
+    ![Fill in postman settings](media/sc_post_request.png 'Post request')
+
+6. Go to the Body tab, select raw data and select JSON as its format.
+
+7. Insert the following data: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 2, 5, 6, 4, 3, 1, 34]]
+
+    ![Fill in postman settings](media/sc_send_request.png 'Post request')
+
+8. Press send and examine the output
+
+9. If the models predicts 0, the car will have compliance, if 1 is predicted, the model predict will not have compliance.
 
 ## Wrap-up
 
