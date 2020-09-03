@@ -186,8 +186,9 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
     >**Note**: If you are unable to select your **Machine Learning Workspace**, do the following steps:
 
     - Quit the `New Azure service connection` dialog
+    - Make sure Cookies are allowed by the browser
     - Refresh or reload the web browser
-    - Perform steps 1 - 3
+    - Perform steps 1 - 3 again
     - In step 4, change the `Scope level` to **Subscription** and then select your **Resource group**
     - Please remember to name your service connection as `quick-start-sc`
     - Grant access permission to all pipelines
