@@ -3,7 +3,7 @@
 ## Scenario overview
 
 In this experience you will learn how Contoso Auto can use MLOps to formalize the process of training and deploying new models using a DevOps approach.
-The Contoso Corporation is a fictional but representative global manufacturing conglomerate. In this tutorial we will use a train script that has already been built to create a model that will predict whether a car is a complicance car. So does the car meet tightening government regulations for low-emission vehicles. The dataset contains information about the condition of car components, type of material and its manufacturing year. 
+The Contoso Corporation is a fictional but representative global manufacturing conglomerate. In this tutorial we will use a train script that has already been built to create a model that will predict whether a car is a complicance car. So does the car meet tightening government regulations for low-emission vehicles. The dataset contains information about the condition of car components, type of material and its manufacturing year.
 
 ## Technology overview
 
@@ -292,7 +292,7 @@ Duration: 25 minutes
 
 ### Task 3: Review Build Artifacts
 
-1. The build will publish an artifact named `devops-for-ai`. Go to Pipelines -> Click on the 'mlops-starter' -> Select the latest run -> Select **Releated, 1 Published** to review the artifact contents.
+1. The build will publish an artifact named `devops-for-ai`. Go to Pipelines -> Click on the 'mlops-starter' -> Select the latest run -> Select **Related, 1 Published** to review the artifact contents.
 
     ![Select Artifacts, 1 published to review the artifact contents.](media/screenshot-artifact.png 'Build Artifacts')
 
@@ -581,7 +581,7 @@ Duration: 5 minutes
 
 8. Press send and examine the output
 
-9. If the models predicts 0, the car will likely to to comply to government specification, if 1 is predicted, the model predict will not comply and be probably an old car with a relatively high carbon footprint.
+9. If the models predicts a 0, the car complies to the government regulations. If 1 is predicted, the model predicts that the car not complies to the regulations and probably be an old car with a relatively high carbon footprint.
 
 ## Wrap-up
 
