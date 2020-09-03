@@ -193,7 +193,7 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
     - In step 4, change the `Scope level` to **Subscription** 
     - Then a Microsoft Login windows should appear. Provide your login details
     - Now, you should be able to select your resource group and AML workspace
-    - Please remember to name your service connection as `quick-start-sc`
+    - Please remember to name your service connection as `quick-starts-sc`
     - Grant access permission to all pipelines
 
     b. Subscription: Select the Azure subscription to use.
@@ -204,7 +204,7 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
 
     d. Machine Learning Workspace: This value should match the value you provided in the `azure-pipelines.yml` file.
 
-    e. Service connection name: `quick-start-sc`
+    e. Service connection name: `quick-starts-sc`
 
     f. Grant access permission to all pipelines: this checkbox must be selected.
 
@@ -434,7 +434,7 @@ Duration: 20 minutes
 
     b. **Display name**: `Deploy and Test Webservice`
 
-    c. **Azure subscription**: `quick-start-sc`
+    c. **Azure subscription**: `quick-starts-sc`
 
     > **Note**: This is the service connection we created in Exercise 1 / Task 4.
 
