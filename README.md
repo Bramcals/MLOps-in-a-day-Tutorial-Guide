@@ -565,7 +565,7 @@ Duration: 5 minutes
 
 4. Paste the scoring URI you copied from the previous task
 
-5. Go to the authorizaton tab, choose the Bearer Token as type as paste the primary key from the previous task as token.
+5. Go to the authorizaton tab, choose the Bearer Token as type and paste the primary key from the previous task as token.
 
     ![Fill in postman settings](media/sc_post_request.png 'Post request')
 
