@@ -3,7 +3,7 @@
 ## Scenario overview
 
 In this experience you will learn how Contoso Auto can use MLOps to formalize the process of training and deploying new models using a DevOps approach.
-The Contoso Corporation is a fictional but representative global manufacturing conglomerate. In this tutorial we will use a train script that has already been built to create a model that will predict whether a car is a complicance car. So does the car meet tightening government regulations for low-emission vehicles. The dataset contains information about the condition of car components, type of material and its manufacturing year.
+The Contoso Corporation is a fictional but representative global manufacturing conglomerate. In this tutorial we will use a train script that has already been built to create a model that will predict whether a car is a compliance car. So does the car meet tightening government regulations for low-emission vehicles. The dataset contains information about the condition of car components, type of material and its manufacturing year.
 
 ## Technology overview
 
@@ -292,7 +292,7 @@ Duration: 25 minutes
 
 ### Task 3: Review Build Artifacts
 
-1. The build will publish an artifact named `devops-for-ai`. Go to Pipelines -> Click on the 'mlops-starter' -> Select the latest run -> Select **Related, 1 Published** to review the artifact contents.
+1. The build will publish an artifact named `devops-for-ai`. Go to Pipelines -> Click on the 'mlops-quickstart' -> Select the latest run -> Select **Related, 1 Published** to review the artifact contents.
 
     ![Select Artifacts, 1 published to review the artifact contents.](media/screenshot-artifact.png 'Build Artifacts')
 
@@ -555,13 +555,13 @@ Duration: 5 minutes
 
 5. Observe the URI and the Primary key. You will be needing these two in the next exercise so keep this window open.
 
-    ![View endpoint and key in studio.](media/sc_key_URI.png 'Azure Machine Learning studio - key, endpont')
+    ![View endpoint and key in studio.](media/sc_key_URI.png 'Azure Machine Learning studio - key, endpoint')
 
 ### Task 2: Pull a request from the deployed model via Postman
 
 1. Open Postman (program that you installed prior to this tutorial. If you haven't installed Postman yet, please download and follow the instruction from the following [link](https://www.postman.com/downloads/))
 
-2. Click on the X sign (top left corner)
+2. Click on the + sign (top left corner)
 
     <!-- ![Click on plus sign](media/plus-sign.png 'New request') -->
 
@@ -569,7 +569,7 @@ Duration: 5 minutes
 
 4. Paste the scoring URI you copied from the previous task
 
-5. Go to the authorizaton tab, choose the Bearer Token as type and paste the primary key from the previous task as token.
+5. Go to the authorization tab, choose the Bearer Token as type and paste the primary key from the previous task as token.
 
     ![Fill in postman settings](media/sc_post_request.png 'Post request')
 
