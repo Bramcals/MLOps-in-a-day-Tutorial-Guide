@@ -598,7 +598,7 @@ Duration: 5 minutes
 
 ### Exercise 6: Delete resource in the Azure Portal
 
-Don't forget to delete your resource on the azure portal if you don't have a free subscription. With a free subscription everythiing will automatically be deleted after 30 days, so you still have some time to practice after this tutorial.
+Don't forget to delete your resource on the azure portal if you don't have a free subscription. With a free subscription everything will automatically be deleted after 30 days, so you still have some time to practice after this tutorial.
 
 If you don't have a free subscription and you like to delete all your resources, then do the following;
 
