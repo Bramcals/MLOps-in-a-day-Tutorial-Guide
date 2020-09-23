@@ -49,6 +49,7 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
   - [Exercise 5: Pull a request from the model via Postman](#exercise-5-pull-request)
     - [Task 1: Get URI and Primary key of model](#task-1-get-uri)
     - [Task 2: Pull a request from the deployed model via Postman](#task-2-pull-request-in-postman)
+  - [Exercise 6: Delete resource in the Azure Portal](#exercise-6-Delete-resource-in-the-Azure-Portal)
   - [Wrap-up](#wrap-up)
   - [Additional resources and more information](#additional-resources-and-more-information)
 
@@ -72,19 +73,20 @@ In order to participate in the MLOps-in-a-day hands-on tutorial for the speciali
 NOTE!!! If you have already set up these prerequisites, skip the next steps and continue at Task 1!
 
 #### DevOps account
-
-A DevOps account can be created by going to the following [link](https://dev.azure.com/). If you already have an account, then you can use that account and create a new organization to complete the tutorial.
+DevOps is a platform to build pipelines via code. It stores your repository and keeps track of all changes in your codes. A DevOps account can be created by going to the following [link](https://dev.azure.com/). If you already have an account, then you can use that account and create a new organization to complete the tutorial.
 To create an account;
 
 1. Click on “start free”
-2. Use an personal or work email address, can be outlook, gmail, etc.
+2. Use an personal or work email address, can be outlook, g-mail, etc.
 3. After creating an account, create an organization, choose any name you like. The project will be created at the start of the technical tutorial.
 
-#### Azure account with Subscription
+#### Microsoft Azure account with Subscription
 
-A free trial subscription can be obtained via the following [link](https://azure.microsoft.com/en-us/free/). Use the same email address that you just used for creating an DevOps account to get your free subscription on Azure. Fill in your personal details and verification by (credit) card. You won't be charged after the free trail unless you choose to upgrade. Before the end of your 30 first days, you'll be notified and have the chance to upgrade and start paying only for the resources you use beyond the free amounts. 
+Microsoft Azure, commonly referred to as Azure, is a cloud computing service created by Microsoft for building, testing, deploying and managing applications and services through Microsoft-managed data centers. A free trial subscription can be obtained via the following [link](https://azure.microsoft.com/en-us/free/). Use the same email address that you just used for creating an DevOps account to get your free subscription on Azure. Fill in your personal details and verification by (credit) card. You won't be charged after the free trail unless you choose to upgrade. Before the end of your 30 first days, you'll be notified and have the chance to upgrade and start paying only for the resources you use beyond the free amounts. 
 
 ##### Creating a resource group and Azure Machine Learning Workspace
+
+A resource group is needed such that resources can be added to the group. It is equivalent to a folder in a directory in which you store your files.
 
 a. Creating a resource group:
 
@@ -94,6 +96,8 @@ a. Creating a resource group:
 4. Choose your Free Trial Subscription, choose a name for the Resource Group (no longer than 10 characters!). For example your initials + '-MLOps'
 5. Set region to ‘West Europe’
 6. Click on -> Review + Create -> Create
+
+Now that we have created a resource group, we can add resources to it. For the purpose of this workshop, we will add Azure Machine Learning. A services to create, test, deploy and manage machine learning solutions.
 
 b. Adding Azure Machine Learning to the resource group
 
@@ -110,7 +114,7 @@ Creating AML may take some time. After creating both the Resource Group and AML,
 
 #### Download & Install Postman
 
-Download and install postman [link](https://www.postman.com/downloads/). We will be using this program to send a request to a deployed model such that a prediction can be received. 
+Download and install postman [link](https://www.postman.com/downloads/). We will be using this program to send a request to a deployed model such that a prediction can be received.
 
 ### Task 1: Create New Project
 
@@ -127,6 +131,7 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
     ![Provide project name in the create new project dialog and then select create.](media/devops-project-02.png 'Create New Project Dialog')
 
 ### Task 2: Import Quickstart code from a GitHub Repo
+In this task you import a repository from GitHub. This repo contains mostly of python files and several YAML files. The python files will perform the Data Science steps such as training, evaluating and deploying a model. The YAML files, are used to setup the pipelines in DevOps and determine which python files to execute in which order. 
 
 1. Within the new project:
 
@@ -139,7 +144,7 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
 2. Provide the following GitHub URL: `https://github.com/Bramcals/MLOps-starter.git` and select **Import**. This should import the code required for the quickstart.
 
     ![Provide the above GitHub URL and select import to import the source code.](media/devops-project-04.png 'Import a Git repository dialog')
-    
+
     *Note that if you receive an error while importing the repository, please disable the preview feature `New Repos landing pages` and import the GitHub repository from the old UI, as shown in steps #3, #4, and #5 below.*
 
 <!-- 
@@ -154,18 +159,20 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
 5. [Optional] Repeat Step #1 above to import the GitHub repository from the old UI. -->
 
 ### Task 3: Update the build YAML file
+In this task, you will update the YAML file with your resourcegroup name and Azure Machine Learning name. These are needed such that the DevOps agent can connected to the Azure Machine Learning service. This connection is needed to keep track of the training experiments.
 
 1. Select and open the `azure-pipelines.yml` file.
 
-2. Select **Edit** and update the following variables: `resourcegroup`, and `workspace (azure machine learning name)`. Go to your azure portal via portal.azure.com and check the resource group name and AML name that you created prior to this tutorial. 
+2. Select **Edit** and update the following variables: `resourcegroup`, and `workspace (azure machine learning name)`. Go to your azure portal via portal.azure.com and check the resource group name and AML name that you created prior to this tutorial.
 
     ![Edit build YAML file and provide your resource group and workspace information.](media/devops-build-pipeline-01.png 'Edit Build YAML file')
 
-3. Select **Commit** to save your changes. If your are asked to create a pull-request, press F5/refresh browser untill pop-up disappears. 
+3. Select **Commit** to save your changes. If your are asked to create a pull-request, press F5/refresh browser until pop-up disappears.
 
     ![Commit your changes to the build YAML file.](media/devops-build-pipeline-02.png 'Commit Build YAML file')
   
 ### Task 4: Create new Service Connection
+Once the correct resourcegroup name and azure machine learning name have been provided, a connection can be made. 
 
 1. From the left navigation select **Project settings** and then select **Service connections**.
 
@@ -237,6 +244,8 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
     ![Provide information as shown in the dialog.](media/sc_02.png 'Add an Azure Resource Manager service connection dialog') -->
 
 ## Exercise 2: Setup and Run the Build Pipeline
+
+In this exercise, the build pipeline will be setup. A pipeline is attached to a repository that must contain a file with all the steps required to execute in the pipeline. In this tutorial, a YAML file is available that contains these steps. After setting up the pipeline, the pipeline can be executed. DevOps creates an agent that will perform the pipeline steps described in the azure-pipelnes.yml. The first step in the pipeline, is to install python. Then several packages are installed, needed to execute the python files. Once CLI and AML have been set-up, the agent kicks off the master pipeline. In the master pipeline, first the model is trained and then evaluated. In the evaluated step, the accuracy of the model is compared with the current deployed model. If the accuracy is better or there is no model yet deployed, the model that is trained in the training step will be deployed. If the accuracy is worse than the current deployed model, the model will not be deployed. Whether or not a model will be deployed, is saved in a eval_info.json file. This file, together with the model itself, are outputs of the build pipeline and used in the deployment pipeline.
 
 Duration: 25 minutes
 
@@ -328,6 +337,8 @@ Duration: 25 minutes
 
 ## Exercise 3: Setup the Release Pipeline
 
+Now that the build train pipeline has succeeded, artifacts (model & eval_info.json) are available to setup the Release Pipeline (or sometimes called the deployment pipeline). Since we like the deployment to kick off directly after the build pipeline has succeeded, we use release pipeline. Continuously integration is not possible within the pipeline section in DevOps. So instead of using a YAML file like we attached to the build pipeline, in the release you will create these steps yourself. Furthermore, you will create variables required to perform the steps.
+
 Duration: 20 minutes
 
 ### Task 1: Create an Empty Job
@@ -365,6 +376,8 @@ Duration: 20 minutes
     ![Open variables tab.](media/devops-release-pipeline-07.png 'Release Pipeline Variables')
 
 3. Add four Pipeline variables as name - value pairs and then select **Save** (use the default values in the **Save** dialog):
+
+These variables are needed to deploy the model. 
 
     a. Name: `aks_name` Value: `aks-cluster01`
 
@@ -478,7 +491,7 @@ Please review the code in `aml_service/deploy.py`. This step will read the `eval
     ![Provide name for the release pipeline and select save.](media/devops-release-pipeline-23.png 'Save')
 
 ## Exercise 4: Test Build and Release Pipelines
-
+Now that we have set up the release pipeline, it can be tested by executing the build pipeline and checking whether the release is automatically triggered to deploy the model. You will execute the build pipeline, by changing some parameters of the algorithm in the training step. This change, will trigger the pipeline to be automatically executed. Once it is done, an artifact is available and the release is triggered.
 Duration: 30 minutes
 
 ### Task 1: Make Edits to Source Code
@@ -535,7 +548,7 @@ Duration: 30 minutes
 
 ## Exercise 5: Pull a request from the model via Postman
 
-In this exercise, you will provide the model with data points and receive a prediction back.
+In this exercise, you will provide the model with data points and receive a prediction back. Now that we have a deployed model, a API call can be made. 
 
 Duration: 5 minutes
 
@@ -582,6 +595,18 @@ Duration: 5 minutes
 8. Press send and examine the output
 
 9. If the models predicts a 0, the car complies to the government regulations. If 1 is predicted, the model predicts that the car not complies to the regulations and probably be an old car with a relatively high carbon footprint.
+
+### Exercise 6: Delete resource in the Azure Portal
+
+Don't forget to delete your resource on the azure portal if you don't have a free subscription. With a free subscription everythiing will automatically be deleted after 30 days, so you still have some time to practice after this tutorial.
+
+If you don't have a free subscription and you like to delete all your resources, then do the following;
+
+1. Open the [Azure Portal](https://portal.azure.com/)
+
+2. Go to Resource Groups and find you Resource Group.
+
+3. Click on "Delete Resource group" in the top menu bar.
 
 ## Wrap-up
 
