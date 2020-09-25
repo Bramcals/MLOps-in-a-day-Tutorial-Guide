@@ -388,9 +388,10 @@ These variables are needed to deploy the model.
     d. Name: `description` Value: `"Compliance Classifier Web Service"` (Note the double quotes around description value).
 
 **Note**:
-    a. Keep the scope for the variables to `Deploy & Test` stage.
 
-    b The name of the Azure region should be the same one that was used to create Azure Machine Learning workspace earlier on.
+    - Keep the scope for the variables to `Deploy & Test` stage.
+
+    - The name of the Azure region should be the same one that was used to create Azure Machine Learning workspace earlier on.
 
 ![Add four pipeline variables as name value pairs and save.](media/devops-release-pipeline-08.png 'Add Pipeline Variables')
 
