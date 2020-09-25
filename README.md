@@ -377,7 +377,7 @@ Duration: 20 minutes
 
 3. Add four Pipeline variables as name - value pairs and then select **Save** (use the default values in the **Save** dialog):
 
-These variables are needed to deploy the model. 
+These variables are needed to deploy the model.
 
     a. Name: `aks_name` Value: `aks-cluster01`
 
@@ -391,7 +391,7 @@ These variables are needed to deploy the model.
     >- Keep the scope for the variables to `Deploy & Test` stage.
     >- The name of the Azure region should be the same one that was used to create Azure Machine Learning workspace earlier on.
 
-      ![Add four pipeline variables as name value pairs and save.](media/devops-release-pipeline-08.png 'Add Pipeline Variables')
+    ![Add four pipeline variables as name value pairs and save.](media/devops-release-pipeline-08.png 'Add Pipeline Variables')
 
 ### Task 4: Setup Agent Pool for Deploy & Test stage
 
