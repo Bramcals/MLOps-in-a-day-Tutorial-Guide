@@ -173,9 +173,9 @@ In this task you import a repository from GitHub. This repo contains mostly of p
 
     a. `LOCATION` = `westeurope`
 
-    b. `RESOURCE_GROUP` = `resourcegroup name`: Go to your azure portal via portal.azure.com and check the resource group name that you created prior to this tutorial.
+    b. `RESOURCE_GROUP` = `you resourcegroup name`: Go to your azure portal via portal.azure.com and check the resource group name that you created prior to this tutorial.
 
-    c. `WORKSPACE_NAME` = `workspace (azure machine learning name)`. Go to your azure portal via portal.azure.com and check the AML name (attached to the resource group) that you created prior to this tutorial.
+    c. `WORKSPACE_NAME` = `your workspace (azure machine learning name)`. Go to your azure portal via portal.azure.com and check the AML name (attached to the resource group) that you created prior to this tutorial. If you haven't created a resource group, go to [Prerequisite: Create a resource group and Azure Machine Learning workspace](#Prerequisite-Create-a-resource-group-and-Azure-Machine-Learning-workspace)
 
     d. `BASE_NAME` = name of `WORKSPACE_NAME` in lower case letter and no special characters (e.g. - _ )
 
