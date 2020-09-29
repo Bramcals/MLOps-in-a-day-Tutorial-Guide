@@ -172,8 +172,11 @@ In this task you import a repository from GitHub. This repo contains mostly of p
 2. Name the variable group; `quickstart-variablegroup` and add the following variables;
 
     a. `LOCATION` = `westeurope`
+
     b. `RESOURCE_GROUP` = `resourcegroup name`: Go to your azure portal via portal.azure.com and check the resource group name that you created prior to this tutorial.
+
     c. `WORKSPACE_NAME` = `workspace (azure machine learning name)`. Go to your azure portal via portal.azure.com and check the AML name (attached to the resource group) that you created prior to this tutorial.
+
     d. `BASE_NAME` = name of `WORKSPACE_NAME` in lower case letter and no special characters (e.g. - _ )
 
     ![Add variables to variable group section](media/adding-variables.png 'adding variables to variable group')
