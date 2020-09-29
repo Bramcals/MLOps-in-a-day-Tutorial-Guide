@@ -246,7 +246,7 @@ Now we will create a connection with azure machine learning.
 
 1. Select **New service connection**.
 
-    ![Navigate to Project Settings, Service connections section.](media/devops-build-pipeline-sc-rg.png 'Service Connections')
+    ![Navigate to Project Settings, Service connections section.](media/devops-build-sc-rg.png 'Service Connections')
 
 2. Select **Azure Resource Manager**, and then select **Next**.
 
