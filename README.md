@@ -401,9 +401,7 @@ Duration: 25 minutes
 
 4. Rename the pipeline to **Train-Pipeline**
 
-5. Select **Run** to start running your train pipeline.
-
-    ![Start the run for your train pipeline.](media/devops-build-pipeline-11.png 'Run train Pipeline')
+5. Select **Run Pipeline** and select **Run** to start running your train pipeline.
 
 6. Monitor the train run. The train pipeline, for the first run, will take around 20 minutes to run.
 
@@ -415,7 +413,7 @@ Duration: 25 minutes
 
 ### Task 3: Review Train Artifacts
 
-1. The train pipeline will publish an artifact named `devops-for-ai`. Go to Pipelines -> Click on the 'mlops-quickstart' -> Select the latest run -> Select **Related, 1 Published** to review the artifact contents.
+1. The train pipeline will publish an artifact named `devops-for-ai`. Go to Pipelines -> Click on the `Train-Pipeline` -> Select the latest run -> Select **Related, 1 Published** to review the artifact contents.
 
     ![Select Artifacts, 1 published to review the artifact contents.](media/screenshot-artifact.png 'Build Artifacts')
 
@@ -451,7 +449,7 @@ Duration: 25 minutes
 
 ## Exercise 3: Setup the Release Pipeline
 
-Now that the train pipeline has succeeded, artifacts (model & eval_info.json) are available to setup the Release Pipeline (or sometimes called the deployment pipeline). Since we like the deployment to kick off directly after the train pipeline has succeeded, we use release pipeline. Continuously integration is not possible within the pipeline section in DevOps. So instead of using a YAML file like we attached to the train pipeline, in the release you will create these steps yourself. Furthermore, you will create variables required to perform the steps.
+Now that the train pipeline has succeeded, artifacts (model & eval_info.json) are available to setup the Release Pipeline (or sometimes called the deployment pipeline). Since we like the deployment to kick off directly after the train pipeline has succeeded, we use release pipeline. Continuously integration is not possible within the pipeline section in DevOps. So instead of using a YAML file like we attached to the IAC and train pipeline, in the release you will create these steps yourself. Furthermore, you will create variables required to perform the steps.
 
 Duration: 20 minutes
 
@@ -475,9 +473,9 @@ Duration: 20 minutes
 
     ![Add a new artifact to the release pipeline.](media/devops-release-pipeline-04.png 'Add an artifact')
 
-2. Select Source type: `Build`, Source (train pipeline): `mlops-starter`. *Observe the note that shows that the mlops-quickstart publishes the build artifact named devops-for-ai*. Finally, select **Add**.
+2. Select Source type: `Build`, Source: `Train-Pipeline`. *Observe the note that shows that the train pipeline publishes the build artifact named devops-for-ai*. Finally, select **Add**.
 
-    ![Provide information to add the build artifact.](media/devops-release-pipeline-05.png 'Add a build artifact')
+    ![Provide information to add the build artifact.](media/attach-train-release.png 'Add a build artifact')
 
 ### Task 3: Add Variables to Deploy & Test stage
 
@@ -538,17 +536,17 @@ These variables are needed to deploy the model.
 
     ![Provide Display name for the Bash task.](media/devops-release-pipeline-14.png 'Bash Task Dialog')
 
-3. Navigate to **Linked artifacts/_mlops-quickstart (Build)/devops-for-ai/environment_setup** and select **install_requirements.sh**.
+3. Navigate to **Linked artifacts/_Train-Pipeline (Build)/devops-for-ai/environment_setup** and select **install_requirements.sh**.
 
-    ![Provide Script Path to the Install Requirements bash file.](media/devops-release-pipeline-15.png 'Select Path Dialog')
+    ![Provide Script Path to the Install Requirements bash file.](media/install-requirements.png 'Select Path Dialog')
 
 4. Expand **Advanced** and select **object browser ...** to provide **Working Directory**.
 
-    ![Expand advanced section to provide Working Directory.](media/devops-release-pipeline-16.png 'Bash Task - Advanced Section')
+    ![Expand advanced section to provide Working Directory.](media/bash-advanced-workdir.png 'Bash Task - Advanced Section')
 
-5. Navigate to **Linked artifacts/_mlops-quickstart (Build)/devops-for-ai** and select **environment_setup**.
+5. Navigate to **Linked artifacts/_Train-Pipeline (Build)/devops-for-ai** and select **environment_setup**.
 
-    ![Provide path to the Working Directory.](media/devops-release-pipeline-17.png 'Select Path Dialog')
+    ![Provide path to the Working Directory.](media/environment-dir.png 'Select Path Dialog')
 
 ### Task 7: Add Deploy & Test Webservice task
 
