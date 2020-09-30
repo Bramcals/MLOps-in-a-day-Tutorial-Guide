@@ -600,17 +600,23 @@ Please review the code in `aml_service/deploy.py`. This step will read the `eval
 
 2. Select: **Save** (use the default values in the **Save** dialog).
 
-    ![Provide name for the release pipeline and select save.](media/Release-pipeline.png 'Save')
+    ![Provide name for the release pipeline and select save.](media/Release-pipeline.png 'save')
 
 ## Exercise 4: Run the Release Pipeline
 
-In this exercise you will execute the release pipeline and use the artifact from the previous train pipeline to deploy a model. 
+In this exercise you will execute the release pipeline and use the artifact from the previous train pipeline to deploy a model. Normally the release pipeline would be executed when the train pipeline has finished. Therefore, we would have to restart the train pipeline. Due to time constraints we will not do this, but instead trigger the release manually.
+
+### Task 1: Start Release pipeline
 
 1. Navigate to **Pipelines, Releases** and select **create release**
 
-    ![Create release.](media/create-release.png 'Save')
+    ![Create release.](media/create-release.png 'create release')
 
-### Task 3: Monitor Release Pipeline
+2. Select **Create**. Note that you can also activate a single automatic trigger here, instead of automatically triggering every time a new build artifact is available from the train pipeline (like we have done now)
+
+    ![Create release.](media/create.png 'Create')
+
+### Task 2: Monitor Release Pipeline
 
 1. Navigate to **Pipelines, Releases**. Observe that the Release pipeline is automatically trigger upon successful completion of the Train pipeline. Select as shown in the figure to view pipeline logs.
 
