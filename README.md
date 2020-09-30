@@ -560,7 +560,7 @@ These variables are needed to deploy the model.
 
     b. **Display name**: `Deploy and Test Webservice`
 
-    c. **Azure subscription**: `quick-starts-sc`
+    c. **Azure subscription**: `quick-starts-sc-aml`
 
     > **Note**: This is the service connection we created in Exercise 1 / Task 4.
 
@@ -568,7 +568,7 @@ These variables are needed to deploy the model.
 
     e. **Inline Script**: `python aml_service/deploy.py --service_name $(service_name) --aks_name $(aks_name) --aks_region $(aks_region) --description $(description)`
 
-    f. Expand **Advanced** and provide **Working Directory:** `$(System.DefaultWorkingDirectory)/_mlops-quickstart/devops-for-ai`.
+    f. Expand **Advanced** and provide **Working Directory:** `$(System.DefaultWorkingDirectory)/_Train-Pipeline/devops-for-ai`.
 
     ![Setup the Azure CLI task using the information above.](media/sc-devops-release-pipeline.png 'Azure CLI Task Dialog')
 
@@ -586,7 +586,7 @@ Please review the code in `aml_service/deploy.py`. This step will read the `eval
 
 ### Task 9: Enable Continuous Deployment Trigger
 
-1. Select **Continuous deployment trigger** for `_mlops-quickstart` artifact.
+1. Select **Continuous deployment trigger** for `_Train-Pipeline` artifact.
 
 2. Enable: **Creates a release every time a new train artifact is available**.
 
@@ -596,44 +596,19 @@ Please review the code in `aml_service/deploy.py`. This step will read the `eval
 
 ### Task 10: Save the Release Pipeline
 
-1. Provide name: `mlops-quickstart-release`.
+1. Provide name: `Release-Pipeline`.
 
 2. Select: **Save** (use the default values in the **Save** dialog).
 
-    ![Provide name for the release pipeline and select save.](media/devops-release-pipeline-23.png 'Save')
+    ![Provide name for the release pipeline and select save.](media/Release-pipeline.png 'Save')
 
-## Exercise 4: Test train and Release Pipelines
+## Exercise 4: Run the Release Pipeline
 
-Now that we have set up the release pipeline, it can be tested by executing the train pipeline and checking whether the release is automatically triggered to deploy the model. You will execute the train pipeline, by changing some parameters of the algorithm in the training step. This change, will trigger the pipeline to be automatically executed. Once it is done, an artifact is available and the release is triggered.
-Duration: 30 minutes
+In this exercise you will execute the release pipeline and use the artifact from the previous train pipeline to deploy a model. 
 
-### Task 1: Make Edits to Source Code
+1. Navigate to **Pipelines, Releases** and select **create release**
 
-1. Navigate to: **Repos -> Files -> scripts -> `train.py`**.
-
-2. **Edit** `train.py`.
-
-3. Change the learning rate **(learning_rate)** of the model from **0.1** to **0.001**.
-
-4. Change the number of estimators **(n_estimators)** from **10** to **30**.
-
-5. Select **Commit**.
-
-    ![Make edits to train.py by changing the learning rate. Select Commit after editing.](media/screenshot-lr-.png 'Edit Train.py')
-
-6. Provide comment: `Improving model performance: changed learning rate.` and select **Commit**.
-
-    ![Provide commit comment for train.py.](media/devops-test-pipelines-02.png 'Commit - Comment')
-
-### Task 2: Monitor Train Pipeline
-
-1. Navigate to **Pipelines, Pipelines**. Observe that the train pipeline is triggered because of the source code change.
-
-   ![Navigate to Pipelines, Builds.](media/devops-test-pipelines-03.png 'Pipelines - pipelines')
-
-2. Select the pipeline run and monitor the pipeline steps. The pipeline will run for 16-18 minutes. Proceed to the next task when the Train pipeline successfully completes.
-
-   ![Monitor train Pipeline. It will take around 15 minutes to complete.](media/devops-test-pipelines-04.png 'Train Pipeline Steps')
+    ![Create release.](media/create-release.png 'Save')
 
 ### Task 3: Monitor Release Pipeline
 
@@ -709,7 +684,23 @@ Duration: 5 minutes
 
 9. If the models predicts a 0, the car complies to the government regulations. If 1 is predicted, the model predicts that the car not complies to the regulations and probably be an old car with a relatively high carbon footprint.
 
-### Exercise 6: Delete resource in the Azure Portal
+## Wrap-up
+
+Congratulations on completing this experience.
+If you still want to practice with ML Ops, we have created an additional exercises. Experience the automation and continous integration of ML Ops with the following exercise [link](#Additional-Exercise-Test-train-and-Release-Pipelines).
+If you will not use your Azure Portal subscriptions with yourr created resources, please do not forget to delete your resources. See how to delete your resources in the following exercise [link](#Deletion-Exercise-Delete-resource-in-the-Azure-Portal)
+
+To recap, you experienced:
+
+1. Creating a new project in Azure DevOps.
+
+2. Creating a IAC Pipeline to setup resources.
+
+3. Creating a Train Pipeline to support model training.
+
+4. Creating a Release Pipeline to support model deployment.
+
+## Deletion Exercise: Delete resource in the Azure Portal
 
 Don't forget to delete your resource on the azure portal if you don't have a free subscription. With a free subscription everything will automatically be deleted after 30 days, so you still have some time to practice after this tutorial.
 
@@ -721,19 +712,40 @@ If you don't have a free subscription and you like to delete all your resources,
 
 3. Click on "Delete Resource group" in the top menu bar.
 
-## Wrap-up
+## Additional Exercise: Test train and Release Pipelines
 
-Congratulations on completing this experience.
+Now that we have set up the release pipeline, it can be tested by executing the train pipeline and checking whether the release is automatically triggered to deploy the model. You will execute the train pipeline, by changing some parameters of the algorithm in the training step. This change, will trigger the pipeline to be automatically executed. Once it is done, an artifact is available and the release is triggered. Note: the model will only be deployed if the trained model has a higher accuracy score than the current deployed model.
 
-To recap, you experienced:
+Duration: 30 minutes
 
-1. Creating a new project in Azure DevOps.
+### Task 1: Make Edits to Source Code
 
-2. Creating a IAC Pipeline to setup resources.
+1. Navigate to: **Repos -> Files -> scripts -> `train.py`**.
 
-3. Creating a Train Pipeline to support model training.
+2. **Edit** `train.py`.
 
-4. Creating a Release Pipeline to support model deployment.
+3. Change the learning rate **(learning_rate)** of the model from **0.1** to **0.001**.
+
+4. Change the number of estimators **(n_estimators)** from **10** to **30**.
+
+5. Select **Commit**.
+
+    ![Make edits to train.py by changing the learning rate. Select Commit after editing.](media/screenshot-lr-.png 'Edit Train.py')
+
+6. Provide comment: `Improving model performance: changed learning rate.` and select **Commit**.
+
+    ![Provide commit comment for train.py.](media/devops-test-pipelines-02.png 'Commit - Comment')
+
+### Task 2: Monitor Train Pipeline
+
+1. Navigate to **Pipelines, Pipelines**. Observe that the train pipeline is triggered because of the source code change.
+
+   ![Navigate to Pipelines, Builds.](media/devops-test-pipelines-03.png 'Pipelines - pipelines')
+
+2. Select the pipeline run and monitor the pipeline steps. The pipeline will run for 16-18 minutes. Proceed to the next task when the Train pipeline successfully completes.
+
+   ![Monitor train Pipeline. It will take around 15 minutes to complete.](media/devops-test-pipelines-04.png 'Train Pipeline Steps')
+
 
 ## Additional resources and more information
 
