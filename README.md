@@ -28,7 +28,7 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
     - [Task 3: Create a variable group](#task-3-create-a-variable-group)
     - [Task 4: Create new Service Connection with Resource Group](#task-4-create-new-service-connection-with-resource-group)
     - [Task 5: Create new Service Connection with Azure Machine Learning](#task-5-create-new-service-connection-with-azure-machine-learning)
-  - [Exercise 2: Setup and Run the IAC Pipeline](#exercise-2-setup-and-run-the-build-pipeline)
+  - [Exercise 2: Setup and Run the IAC Pipeline](#exercise-2-setup-and-run-the-IAC-pipeline)
     - [Task 1: TODO](#task-1-setup-build-pipeline)
   - [Exercise 3: Setup and Run the Build Pipeline](#exercise-2-setup-and-run-the-build-pipeline)
     - [Task 1: Setup Build Pipeline](#task-1-setup-build-pipeline)
@@ -181,6 +181,8 @@ In this task you import a repository from GitHub. This repo contains mostly of p
 
     ![Add variables to variable group section](media/adding-variables.png 'adding variables to variable group')
 
+3. Select `Save`
+
 <!--
 ### Task 3: Update the build YAML file
 In this task, you will update the YAML file with your resourcegroup name and Azure Machine Learning name. These are needed such that the DevOps agent can connected to the Azure Machine Learning service. This connection is needed to keep track of the training experiments.
@@ -232,11 +234,13 @@ Once the correct resource group and azure machine learning name have been provid
 
     C. Subscription: Select the Azure subscription to use.
 
-    d. Resource group: This value should match the value you provided in the `azure-pipelines.yml` file.
+    d. Resource group: This value should match the value you just provided in the library as variable.
 
     e. Service connection name: `quick-starts-sc-rg`
 
     f. Grant access permission to all pipelines: this checkbox must be selected.
+
+    g. Select `Save`
 
     ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/sc-server-connection-rg.png 'Add an Azure Resource Manager service')
 
@@ -277,13 +281,15 @@ Now we will create a connection with azure machine learning.
 
     > **Note**: It might take up to 30 seconds for the **Subscription** dropdown to be populated with available subscriptions, depending on the number of different subscriptions your account has access to.
 
-    c. Resource group: This value should match the value you provided in the `azure-pipelines.yml` file.
+    c. Resource group: This value should match the value you just provided in the library as variable.
 
-    d. Machine Learning Workspace: This value should match the value you provided in the `azure-pipelines.yml` file.
+    d. Machine Learning Workspace: This value should match the value you just provided in the library as variable.
 
     e. Service connection name: `quick-starts-sc-aml`
 
     f. Grant access permission to all pipelines: this checkbox must be selected.
+
+    g. Select `Save`
 
     ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/sc-server-connection-aml.png 'Add an Azure Resource Manager service')
 
@@ -293,11 +299,61 @@ Now we will create a connection with azure machine learning.
 
 In this exercise, the IAC pipeline will be build. This pipeline will setup and update your resources if needed. In our case, we have asked you to set up your resources (resource group & Azure machine learning) prior to this tutorial. This is required because sometimes it can be the case that a significant amount of time is needed to setup these resource. Therefore, in this step you will only update the resources as you would normally do when deploying your newest model.
 
-### Task 1: TODO
+### Task 1: Setup the IAC Pipeline
+
+1. From left navigation select **Pipelines, Pipelines** and then select **Create pipeline**.
+
+    ![Navigate to Pipelines, Pipelines, and then select Create pipeline](media/devops-build-pipeline-07.png 'Create Build Pipeline')
+
+2. Select **Azure Repos Git** as your code repository.
+
+    ![Select your code repository source for your new build pipeline.](media/devops-build-pipeline-08.png 'Repository Source')
+
+3. Select **mlops-quickstart** as your repository.
+
+    ![Select mlops-quickstart as your repository.](media/devops-build-pipeline-09.png 'Select Repository')
+
+4. Select **Existing Azure Pipelines YAML file**, select **/environment_setup/iac-pipeline.yml** as your path and select continue
+
+    ![Select yaml file as your setup.](media/select-yaml-file-path.png 'Select yaml')
+
+5. Review your pipeline YAML
+
+    a. note that the yaml file is connected with your **quickstart-variablegroup**
+
+    b. In this pipeline YAML, only one step is performed; **Azure Resource Group Deployment**. In this YAML file it can be the case to load your data into a storage account or attach computes to your resources.
+
+### Task 2: Run the IAC Pipeline
+
+1. Before running the pipeline, lets first give the pipeline a proper name. Select the arrow next to the run button.
+
+    ![Select yaml file as your setup.](media/save-before-run.png 'Select save')
+
+2. Select **Save**
+
+3. Select the settings button next to the **Run Pipeline** button and select **Rename/move**
+
+    ![Select yaml file as your setup.](media/settings-save-rename.png 'Select save')
+
+4. Rename the pipeline to **IAC-Pipeline**
+
+5. Select **Run Pipeline** and press **Run**
+
+### Task 3: Review output
+
+1. Select **Job** to view the current progress in the pipeline execution run
+
+    ![Select job.](media/Select-job.png 'Select job')
+
+2. Review the steps
+
+3. Note that Deploy MLOps Resources requires the most time. However, as most resources have already been deployment, this step does not require a lot of time.
+
+    ![Review steps of IAC pipeline.](media/review-steps.png 'Review steps')
 
 ## Exercise 3: Setup and Run the build Pipeline
 
-In this exercise, the build pipeline will be setup. A pipeline is attached to a repository that must contain a file with all the steps required to execute in the pipeline. In this tutorial, a YAML file is available that contains these steps. After setting up the pipeline, the pipeline can be executed. DevOps creates an agent that will perform the pipeline steps described in the azure-pipelnes.yml. The first step in the pipeline, is to install python. Then several packages are installed, needed to execute the python files. Once CLI and AML have been set-up, the agent kicks off the master pipeline. In the master pipeline, first the model is trained and then evaluated. In the evaluated step, the accuracy of the model is compared with the current deployed model. If the accuracy is better or there is no model yet deployed, the model that is trained in the training step will be deployed. If the accuracy is worse than the current deployed model, the model will not be deployed. Whether or not a model will be deployed, is saved in a eval_info.json file. This file, together with the model itself, are outputs of the build pipeline and used in the deployment pipeline.
+In this exercise, the build pipeline will be setup. A pipeline is attached to a repository that must contain a file with all the steps required to execute in the pipeline. In this tutorial, a YAML file is available that contains these steps. After setting up the pipeline, the pipeline can be executed. DevOps creates an agent that will perform the pipeline steps described in the build-pipeline.yml. The first step in the pipeline, is to install python. Then several packages are installed, needed to execute the python files. Once CLI and AML have been set-up, the agent kicks off the master pipeline. In the master pipeline, first the model is trained and then evaluated. In the evaluated step, the accuracy of the model is compared with the current deployed model. If the accuracy is better or there is no model yet deployed, the model that is trained in the training step will be deployed. If the accuracy is worse than the current deployed model, the model will not be deployed. Whether or not a model will be deployed, is saved in a eval_info.json file. This file, together with the model itself, are outputs of the build pipeline and used in the deployment pipeline.
 
 Duration: 25 minutes
 
@@ -309,7 +365,7 @@ Duration: 25 minutes
 
 ### Task 1: Setup Build Pipeline
 
-1. From left navigation select **Pipelines, Pipelines** and then select **Create pipeline**.
+1. From left navigation select **Pipelines, Pipelines** and then select **New pipeline**.
 
     ![Navigate to Pipelines, Pipelines, and then select Create pipeline](media/devops-build-pipeline-07.png 'Create Build Pipeline')
 
