@@ -31,11 +31,11 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
   - [Exercise 2: Setup and Run the CI Pipeline](#exercise-2-setup-and-run-the-CI-pipeline)
     - [Task 1: Setup the CI Pipeline](#task-1-setup-the-CI-pipeline)
     - [Task 2: Run the CI pipeline](#task-2-run-the-CI-pipeline)
-    - [Task 3: Review output](#task-3-review-output)
+    - [Task 3: Review output CI pipeline](#task-3-review-output-of-CI-pipeline)
   - [Exercise 3: Setup and Run the IAC Pipeline](#exercise-3-setup-and-run-the-IAC-pipeline)
     - [Task 1: Setup the IAC Pipeline](#task-1-setup-the-IAC-pipeline)
     - [Task 2: Run the IAC pipeline](#task-2-run-the-IAC-pipeline)
-    - [Task 3: Review output](#task-3-review-output)
+    - [Task 3: Review output of IAC Pipeline](#task-3-review-output-of-IAC-Pipeline)
   - [Exercise 4: Setup and Run the Train Pipeline](#exercise-4-setup-and-run-the-train-pipeline)
     - [Task 1: Setup Train Pipeline](#task-1-setup-train-pipeline)
     - [Task 2: Run the Train Pipeline](#task-2-run-the-train-pipeline)
@@ -331,7 +331,7 @@ In this exercise, the CI will be build. In this pipeline a code quality check wi
 
 1. Before running the pipeline, lets first give the pipeline a meaningful name. Select the arrow next to the run button.
 
-    ![Select yaml file as your setup.](media/save-CI-pipeline.png.png 'Select save')
+    ![Select yaml file as your setup.](media/save-CI-pipeline.png 'Select save')
 
 2. Select **Save**
 
@@ -342,6 +342,18 @@ In this exercise, the CI will be build. In this pipeline a code quality check wi
 4. Rename the pipeline to **CI-Pipeline**
 
 5. Select **Run Pipeline** and press **Run**
+
+### Task 3: Review output of CI pipeline
+
+1. Select **Job** to view the current progress in the pipeline execution run
+
+    ![Select job.](media/Select-job.png 'Select job')
+
+2. Review the steps
+
+3. Note the code quality check. In the check it can be seen that several packages are imported but never used.
+
+    ![Check code quality.](media/Code-quality-check.png 'Check code quality')
 
 ## Exercise 3: Setup and Run the IAC Pipeline
 
@@ -379,7 +391,7 @@ In this exercise, the IAC pipeline will be build. This pipeline will setup and u
 
 5. Select **Run Pipeline** and press **Run**
 
-### Task 3: Review output
+### Task 3: Review output of IAC Pipeline
 
 1. Select **Job** to view the current progress in the pipeline execution run
 
@@ -790,6 +802,6 @@ Duration: 30 minutes
 
    ![Monitor train Pipeline. It will take around 15 minutes to complete.](media/devops-test-pipelines-04.png 'Train Pipeline Steps')
 
-## Additional resources and more information
+### Additional resources and more information
 
 To learn more about MLOps with the Azure Machine Learning service, visit the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/service/concept-model-management-and-deployment)
