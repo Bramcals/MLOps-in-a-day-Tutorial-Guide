@@ -158,17 +158,6 @@ In this task you import a repository from GitHub. This repo contains mostly of p
 
     *Note that if you receive an error while importing the repository, please disable the preview feature `New Repos landing pages` and import the GitHub repository from the old UI, as shown in steps #3, #4, and #5 below.*
 
-<!-- 
-3. [Optional] Select **Account settings, Preview features**.
-
-    ![The image shows how to navigate to the list of preview features.](media/preview_features-01.png 'Preview features')
-
-4. [Optional] From the list of preview features, disable the preview feature **New Repos landing pages**.
-
-   ![The image shows a list of preview features and highlights the preview feature, New Repos landing pages.](media/preview_features-02.png 'Disable New Repos landing pages')
-
-5. [Optional] Repeat Step #1 above to import the GitHub repository from the old UI. -->
-
 ### Task 3: Create a variable group
 
 1. Select **Pipelines**, select **Library** and select **+ Variable group**
@@ -188,20 +177,6 @@ In this task you import a repository from GitHub. This repo contains mostly of p
     ![Add variables to variable group section](media/adding-variables.png 'adding variables to variable group')
 
 3. Select `Save`
-
-<!--
-### Task 3: Update the build YAML file
-In this task, you will update the YAML file with your resourcegroup name and Azure Machine Learning name. These are needed such that the DevOps agent can connected to the Azure Machine Learning service. This connection is needed to keep track of the training experiments.
-
-1. Select and open the `azure-pipelines.yml` file.
-
-2. Select **Edit** and update the following variables: `resourcegroup`, and `workspace (azure machine learning name)`. Go to your azure portal via portal.azure.com and check the resource group name and AML name that you created prior to this tutorial.
-
-    ![Edit build YAML file and provide your resource group and workspace information.](media/devops-build-pipeline-01.png 'Edit Build YAML file')
-
-3. Select **Commit** to save your changes. If your are asked to create a pull-request, press F5/refresh browser until pop-up disappears.
-
-    ![Commit your changes to the build YAML file.](media/devops-build-pipeline-02.png 'Commit Build YAML file')  -->
 
 ### Task 4: Create new Service Connection with Resource Group
 
@@ -408,12 +383,6 @@ In this exercise, the IAC pipeline will be build. This pipeline will setup and u
 In this exercise, the Train pipeline will be setup. A pipeline is attached to a repository that must contain a file with all the steps required to execute in the pipeline. In this tutorial, a YAML file is available that contains these steps. After setting up the pipeline, the pipeline can be executed. DevOps creates an agent that will perform the pipeline steps described in the train-pipeline.yml. The first step in the pipeline, is to install python. Then several packages are installed, needed to execute the python files. Once CLI and AML have been set-up, the agent kicks off the master pipeline. In the master pipeline, first the model is trained and then evaluated. In the evaluated step, the accuracy of the model is compared with the current deployed model. If the accuracy is better or there is no model yet deployed, the model that is trained in the training step will be deployed. If the accuracy is worse than the current deployed model, the model will not be deployed. Whether or not a model will be deployed, is saved in a eval_info.json file. This file, together with the model itself, are outputs of the Train pipeline and used in the deployment pipeline.
 
 Duration: 25 minutes
-
-> **Note**: This exercise requires the new version of the **Pipelines** user interface. To activate it, select **Pipelines** from the left navigation. If the first option below **Pipelines** is **Builds**, you are still running on the previous version of the user interface. In this case, a popup should appear suggesting the activation of the new user interface.
->
-> ![Activate the new Azure Pipelines user interface.](media/devops-ui-activation.png 'Multi-stage pipelines activation')
->
-> Select **Try it!** to activate the new Pipelines user interface. When successfully activated, the first option below **Pipelines** from the left navigation will change to **Pipelines**.
 
 ### Task 1: Setup Train Pipeline
 
@@ -673,22 +642,6 @@ In this exercise you will execute the release pipeline and use the artifact from
    ![Navigate to Pipelines, Releases and Select as shown in the figure to view pipeline logs.](media/devops-test-pipelines-05.png 'Pipelines - Releases')
 
 2. The release pipeline will run for about 15 minutes. Proceed to the next task when the release pipeline successfully completes.
-
-<!-- ### Task 4: Review Release Pipeline Outputs
-
-1. From the pipeline logs view, select **Deploy & Test Webservice** task to view details.
-
-    ![Select Deploy & Test Webservice task to view details.](media/devops-test-pipelines-06.png 'Pipeline Logs')
-
-2. Observe the **Scoring URI** and **API Key** for the deployed webservice. 
-
-3. Note down both the `Scoring URI` and `API Key` for *Exercise 5*.
-
-    ![View Deploy & Test Webservice task logs and note down the Scoring URI of the deployed webservice.](media/devops-test-pipelines-07.png 'Deploy & Test Webservice Task Logs')
-
-4. Log in to Azure Machine Learning studio. Open your **Endpoints** section, and observe the deployed webservice: **compliance-classifier-service**.
-
-    ![View deployed webservice in Azure Machine Learning studio.](media/devops-test-pipelines-08.png 'Azure Machine Learning studio - Workspace, Deployments') -->
 
 ## Exercise 7: Pull a request from the model via Postman
 
