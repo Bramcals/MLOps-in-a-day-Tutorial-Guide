@@ -28,16 +28,20 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
     - [Task 3: Create a variable group](#task-3-create-a-variable-group)
     - [Task 4: Create new Service Connection with Resource Group](#task-4-create-new-service-connection-with-resource-group)
     - [Task 5: Create new Service Connection with Azure Machine Learning](#task-5-create-new-service-connection-with-azure-machine-learning)
-  - [Exercise 2: Setup and Run the IAC Pipeline](#exercise-2-setup-and-run-the-IAC-pipeline)
+  - [Exercise 2: Setup and Run the CI Pipeline](#exercise-2-setup-and-run-the-CI-pipeline)
+    - [Task 1: Setup the CI Pipeline](#task-1-setup-the-CI-pipeline)
+    - [Task 2: Run the CI pipeline](#task-2-run-the-CI-pipeline)
+    - [Task 3: Review output](#task-3-review-output)
+  - [Exercise 3: Setup and Run the IAC Pipeline](#exercise-2-setup-and-run-the-IAC-pipeline)
     - [Task 1: Setup the IAC Pipeline](#task-1-setup-the-IAC-pipeline)
     - [Task 2: Run the IAC pipeline](#task-2-run-the-IAC-pipeline)
     - [Task 3: Review output](#task-3-review-output)
-  - [Exercise 3: Setup and Run the Train Pipeline](#exercise-2-setup-and-run-the-train-pipeline)
+  - [Exercise 4: Setup and Run the Train Pipeline](#exercise-2-setup-and-run-the-train-pipeline)
     - [Task 1: Setup Train Pipeline](#task-1-setup-train-pipeline)
     - [Task 2: Run the Train Pipeline](#task-2-run-the-train-pipeline)
     - [Task 3: Review Train Artifacts](#task-3-review-train-artifacts)
     - [Task 4: Review Train Outputs](#task-4-review-train-outputs)
-  - [Exercise 3: Setup the Release Pipeline](#exercise-3-setup-the-release-pipeline)
+  - [Exercise 5: Setup the Release Pipeline](#exercise-3-setup-the-release-pipeline)
     - [Task 1: Create an Empty Job](#task-1-create-an-empty-job)
     - [Task 2: Add Build Artifact](#task-2-add-build-artifact)
     - [Task 3: Add Variables to Deploy &amp; Test stage](#task-3-add-variables-to-deploy-amp-test-stage)
@@ -48,15 +52,16 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
     - [Task 8: Define Deployment Trigger](#task-8-define-deployment-trigger)
     - [Task 9: Enable Continuous Deployment Trigger](#task-9-enable-continuous-deployment-trigger)
     - [Task 10: Save the Release Pipeline](#task-10-save-the-release-pipeline)
-  - [Exercise 4: Test Train and Release Pipelines](#exercise-4-test-train-and-release-pipelines)
+  - [Exercise 6: Test Train and Release Pipelines](#exercise-4-test-train-and-release-pipelines)
     - [Task 1: Make Edits to Source Code](#task-1-make-edits-to-source-code)
     - [Task 2: Monitor Train Pipeline](#task-2-monitor-train-pipeline)
     - [Task 3: Monitor Release Pipeline](#task-3-monitor-release-pipeline)
-  - [Exercise 5: Pull a request from the model via Postman](#exercise-5-pull-request)
+  - [Exercise 7: Pull a request from the model via Postman](#exercise-5-pull-request)
     - [Task 1: Get URI and Primary key of model](#task-1-get-uri)
     - [Task 2: Pull a request from the deployed model via Postman](#task-2-pull-request-in-postman)
-  - [Exercise 6: Delete resource in the Azure Portal](#exercise-6-Delete-resource-in-the-Azure-Portal)
   - [Wrap-up](#wrap-up)
+  - [Deletion Exercise: Delete resource in the Azure Portal](#Deletion-exercise-delete-resource-in-the-Azure-Portal)
+  - [Take-Home Exercise: Test train and Release Pipelines](#Take-Home-Exercise-Test-train-and-Release-Pipelines)
   - [Additional resources and more information](#additional-resources-and-more-information)
 
 ## Prerequisite: Create a resource group and Azure Machine Learning workspace
@@ -297,11 +302,9 @@ Now we will create a connection with azure machine learning.
 
     **Note**: If you successfully created the new service connection **goto Exercise 2**.
 
-## Exercise 2: Setup and Run the IAC Pipeline
+## Exercise 2: Setup and Run the CI Pipeline
 
-In this exercise, the IAC pipeline will be build. This pipeline will setup and update your resources if needed. In our case, we have asked you to set up your resources (resource group & Azure machine learning) prior to this tutorial. This is required because sometimes it can be the case that a significant amount of time is needed to setup these resource. Therefore, in this step you will only update the resources as you would normally do when deploying your newest model.
-
-### Task 1: Setup the IAC Pipeline
+In this exercise, the CI will be build. In this pipeline a code quality check will be performed on all python files in the repository. In this pipeline, also unity tests can be performed. In unit testing you break down the functionality of your program into discrete testable behaviors that you can test as individual units. However, for the sake of this tutorial, we will only do a code quality check.
 
 1. From left navigation select **Pipelines, Pipelines** and then select **Create pipeline**.
 
@@ -315,9 +318,45 @@ In this exercise, the IAC pipeline will be build. This pipeline will setup and u
 
     ![Select mlops-quickstart as your repository.](media/devops-build-pipeline-09.png 'Select Repository')
 
-4. Select **Existing Azure Pipelines YAML file**, select **/environment_setup/iac-pipeline.yml** as your path and select continue
+4. Select **Existing Azure Pipelines YAML file**, select **/environment_setup/CI-pipeline.yml** as your path and select continue
 
-    ![Select yaml file as your setup.](media/select-yaml-file-path.png 'Select yaml')
+    ![Ci pipeline.](media/CI-Pipeline-path.png 'Select CI path')
+
+5. Review your pipeline YAML
+
+    a. Note that python is installed to perform this step
+
+    b. The main step in this pipeline is the code quality check. It is also possible to create a report of this step. However, this is left out of scope.
+
+### Task 2: Run the CI Pipeline
+
+1. Before running the pipeline, lets first give the pipeline a meaningful name. Select the arrow next to the run button.
+
+    ![Select yaml file as your setup.](media/save-CI-pipeline.png.png 'Select save')
+
+2. Select **Save**
+
+3. Select the settings button next to the **Run Pipeline** button and select **Rename/move**
+
+    ![Select yaml file as your setup.](media/settings-save-rename.png 'Select save')
+
+4. Rename the pipeline to **CI-Pipeline**
+
+5. Select **Run Pipeline** and press **Run**
+
+## Exercise 3: Setup and Run the IAC Pipeline
+
+In this exercise, the IAC pipeline will be build. This pipeline will setup and update your resources if needed. In our case, we have asked you to set up your resources (resource group & Azure machine learning) prior to this tutorial. This is required because sometimes it can be the case that a significant amount of time is needed to setup these resource. Therefore, in this step you will only update the resources as you would normally do when deploying your newest model.
+
+### Task 1: Setup the IAC Pipeline
+
+1. From left navigation select **Pipelines, Pipelines** and then select **New pipeline**.
+
+2. Select **Azure Repos Git** as your code repository.
+
+3. Select **mlops-quickstart** as your repository.
+
+4. Select **Existing Azure Pipelines YAML file**, select **/environment_setup/IAC-pipeline.yml** as your path and select continue
 
 5. Review your pipeline YAML
 
@@ -355,7 +394,7 @@ In this exercise, the IAC pipeline will be build. This pipeline will setup and u
 
 ## Exercise 3: Setup and Run the Train Pipeline
 
-In this exercise, the Train pipeline will be setup. A pipeline is attached to a repository that must contain a file with all the steps required to execute in the pipeline. In this tutorial, a YAML file is available that contains these steps. After setting up the pipeline, the pipeline can be executed. DevOps creates an agent that will perform the pipeline steps described in the build-pipeline.yml. The first step in the pipeline, is to install python. Then several packages are installed, needed to execute the python files. Once CLI and AML have been set-up, the agent kicks off the master pipeline. In the master pipeline, first the model is trained and then evaluated. In the evaluated step, the accuracy of the model is compared with the current deployed model. If the accuracy is better or there is no model yet deployed, the model that is trained in the training step will be deployed. If the accuracy is worse than the current deployed model, the model will not be deployed. Whether or not a model will be deployed, is saved in a eval_info.json file. This file, together with the model itself, are outputs of the Train pipeline and used in the deployment pipeline.
+In this exercise, the Train pipeline will be setup. A pipeline is attached to a repository that must contain a file with all the steps required to execute in the pipeline. In this tutorial, a YAML file is available that contains these steps. After setting up the pipeline, the pipeline can be executed. DevOps creates an agent that will perform the pipeline steps described in the train-pipeline.yml. The first step in the pipeline, is to install python. Then several packages are installed, needed to execute the python files. Once CLI and AML have been set-up, the agent kicks off the master pipeline. In the master pipeline, first the model is trained and then evaluated. In the evaluated step, the accuracy of the model is compared with the current deployed model. If the accuracy is better or there is no model yet deployed, the model that is trained in the training step will be deployed. If the accuracy is worse than the current deployed model, the model will not be deployed. Whether or not a model will be deployed, is saved in a eval_info.json file. This file, together with the model itself, are outputs of the Train pipeline and used in the deployment pipeline.
 
 Duration: 25 minutes
 
@@ -373,7 +412,7 @@ Duration: 25 minutes
 
 3. Select **mlops-quickstart** as your repository.
 
-4. Select **Existing Azure Pipelines YAML file**, select **/environment_setup/build-pipeline.yml** as your path and select continue
+4. Select **Existing Azure Pipelines YAML file**, select **/environment_setup/Train-pipeline.yml** as your path and select continue
 
 5. Review the YAML file.
 
@@ -718,7 +757,7 @@ If you don't have a free subscription and you like to delete all your resources,
 
 3. Click on "Delete Resource group" in the top menu bar.
 
-## Additional Exercise: Test train and Release Pipelines
+## Take-Home Exercise: Test train and Release Pipelines
 
 Now that we have set up the release pipeline, it can be tested by executing the train pipeline and checking whether the release is automatically triggered to deploy the model. You will execute the train pipeline, by changing some parameters of the algorithm in the training step. This change, will trigger the pipeline to be automatically executed. Once it is done, an artifact is available and the release is triggered. Note: the model will only be deployed if the trained model has a higher accuracy score than the current deployed model.
 
@@ -751,7 +790,6 @@ Duration: 30 minutes
 2. Select the pipeline run and monitor the pipeline steps. The pipeline will run for 16-18 minutes. Proceed to the next task when the Train pipeline successfully completes.
 
    ![Monitor train Pipeline. It will take around 15 minutes to complete.](media/devops-test-pipelines-04.png 'Train Pipeline Steps')
-
 
 ## Additional resources and more information
 
