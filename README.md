@@ -278,7 +278,7 @@ Now we will create a connection with azure machine learning.
 
 ## Exercise 2: Setup and Run the CI Pipeline
 
-In this exercise, the CI will be build. In this pipeline a code quality check will be performed on all python files in the repository. In this pipeline, also unity tests can be performed. In unit testing you break down the functionality of your program into discrete testable behaviors that you can test as individual units. However, for the sake of this tutorial, we will only do a code quality check.
+In this exercise, the CI will be build. In this pipeline a code quality check will be performed on all python files in the repository.  Unity tests can also be performed in this pipeline. In unit testing you break down the functionality of your program into discrete testable behaviors that you can test as individual units. However, for the sake of this tutorial, we will only do a code quality check.
 
 1. From left navigation select **Pipelines, Pipelines** and then select **Create pipeline**.
 
