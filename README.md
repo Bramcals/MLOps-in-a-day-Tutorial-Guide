@@ -641,7 +641,7 @@ In this exercise you will execute the release pipeline and use the artifact from
 
    ![Navigate to Pipelines, Releases and Select as shown in the figure to view pipeline logs.](media/devops-test-pipelines-05.png 'Pipelines - Releases')
 
-2. The release pipeline will run for about 15 minutes. Proceed to the next task when the release pipeline successfully completes.
+2. The release pipeline will run for about 5 minutes. Proceed to the next task when the release pipeline successfully completes.
 
 ## Exercise 7: Pull a request from the model via Postman
 
