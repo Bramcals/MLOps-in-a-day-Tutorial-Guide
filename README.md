@@ -326,7 +326,7 @@ In this exercise, the CI will be build. In this pipeline a code quality check wi
 
 2. Review the steps
 
-3. Note the code quality check. In the check it can be seen that several packages are imported but never used. The check also indicates white lines/space and lines that consist of too many characters. With this check, we can adjust our code and make it more Pythonic -> increasing the standardization of work.
+3. Review the code quality check. In the check it can be seen that several packages are imported but never used. The check also indicates white lines/space and lines that consist of too many characters. With this check, we can adjust our code and make it more Pythonic -> increasing the standardization and manageability of work.
 
     ![Check code quality.](media/Code-quality-check.png 'Check code quality')
 
