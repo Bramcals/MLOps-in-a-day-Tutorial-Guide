@@ -32,16 +32,16 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
     - [Task 1: Setup the CI Pipeline](#task-1-setup-the-CI-pipeline)
     - [Task 2: Run the CI pipeline](#task-2-run-the-CI-pipeline)
     - [Task 3: Review output](#task-3-review-output)
-  - [Exercise 3: Setup and Run the IAC Pipeline](#exercise-2-setup-and-run-the-IAC-pipeline)
+  - [Exercise 3: Setup and Run the IAC Pipeline](#exercise-3-setup-and-run-the-IAC-pipeline)
     - [Task 1: Setup the IAC Pipeline](#task-1-setup-the-IAC-pipeline)
     - [Task 2: Run the IAC pipeline](#task-2-run-the-IAC-pipeline)
     - [Task 3: Review output](#task-3-review-output)
-  - [Exercise 4: Setup and Run the Train Pipeline](#exercise-2-setup-and-run-the-train-pipeline)
+  - [Exercise 4: Setup and Run the Train Pipeline](#exercise-4-setup-and-run-the-train-pipeline)
     - [Task 1: Setup Train Pipeline](#task-1-setup-train-pipeline)
     - [Task 2: Run the Train Pipeline](#task-2-run-the-train-pipeline)
     - [Task 3: Review Train Artifacts](#task-3-review-train-artifacts)
     - [Task 4: Review Train Outputs](#task-4-review-train-outputs)
-  - [Exercise 5: Setup the Release Pipeline](#exercise-3-setup-the-release-pipeline)
+  - [Exercise 5: Setup the Release Pipeline](#exercise-5-setup-the-release-pipeline)
     - [Task 1: Create an Empty Job](#task-1-create-an-empty-job)
     - [Task 2: Add Build Artifact](#task-2-add-build-artifact)
     - [Task 3: Add Variables to Deploy &amp; Test stage](#task-3-add-variables-to-deploy-amp-test-stage)
@@ -52,11 +52,10 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
     - [Task 8: Define Deployment Trigger](#task-8-define-deployment-trigger)
     - [Task 9: Enable Continuous Deployment Trigger](#task-9-enable-continuous-deployment-trigger)
     - [Task 10: Save the Release Pipeline](#task-10-save-the-release-pipeline)
-  - [Exercise 6: Test Train and Release Pipelines](#exercise-4-test-train-and-release-pipelines)
-    - [Task 1: Make Edits to Source Code](#task-1-make-edits-to-source-code)
-    - [Task 2: Monitor Train Pipeline](#task-2-monitor-train-pipeline)
-    - [Task 3: Monitor Release Pipeline](#task-3-monitor-release-pipeline)
-  - [Exercise 7: Pull a request from the model via Postman](#exercise-5-pull-request)
+  - [Exercise 6: Run the Release Pipeline](#Exercise-6-run-the-release-pipeline)
+    - [Task 1: Start Release pipeline](#task-1-start-release-pipeline)
+    - [Task 2: Monitor Release Pipeline](#task-2-monitor-release-pipeline)
+  - [Exercise 7: Pull a request from the model via Postman](#exercise-7-pull-request)
     - [Task 1: Get URI and Primary key of model](#task-1-get-uri)
     - [Task 2: Pull a request from the deployed model via Postman](#task-2-pull-request-in-postman)
   - [Wrap-up](#wrap-up)
@@ -392,7 +391,7 @@ In this exercise, the IAC pipeline will be build. This pipeline will setup and u
 
     ![Review steps of IAC pipeline.](media/review-steps.png 'Review steps')
 
-## Exercise 3: Setup and Run the Train Pipeline
+## Exercise 4: Setup and Run the Train Pipeline
 
 In this exercise, the Train pipeline will be setup. A pipeline is attached to a repository that must contain a file with all the steps required to execute in the pipeline. In this tutorial, a YAML file is available that contains these steps. After setting up the pipeline, the pipeline can be executed. DevOps creates an agent that will perform the pipeline steps described in the train-pipeline.yml. The first step in the pipeline, is to install python. Then several packages are installed, needed to execute the python files. Once CLI and AML have been set-up, the agent kicks off the master pipeline. In the master pipeline, first the model is trained and then evaluated. In the evaluated step, the accuracy of the model is compared with the current deployed model. If the accuracy is better or there is no model yet deployed, the model that is trained in the training step will be deployed. If the accuracy is worse than the current deployed model, the model will not be deployed. Whether or not a model will be deployed, is saved in a eval_info.json file. This file, together with the model itself, are outputs of the Train pipeline and used in the deployment pipeline.
 
@@ -486,7 +485,7 @@ Duration: 25 minutes
 
     ![Review list of registered models that reference dataset in Azure Machine Learning studio.](media/devops-build-outputs-05.png 'Registered dataset model references in Azure Machine Learning studio')
 
-## Exercise 3: Setup the Release Pipeline
+## Exercise 5: Setup the Release Pipeline
 
 Now that the train pipeline has succeeded, artifacts (model & eval_info.json) are available to setup the Release Pipeline (or sometimes called the deployment pipeline). Since we like the deployment to kick off directly after the train pipeline has succeeded, we use release pipeline. Continuously integration is not possible within the pipeline section in DevOps. So instead of using a YAML file like we attached to the IAC and train pipeline, in the release you will create these steps yourself. Furthermore, you will create variables required to perform the steps.
 
@@ -641,7 +640,7 @@ Please review the code in `aml_service/deploy.py`. This step will read the `eval
 
     ![Provide name for the release pipeline and select save.](media/Release-pipeline.png 'save')
 
-## Exercise 4: Run the Release Pipeline
+## Exercise 6: Run the Release Pipeline
 
 In this exercise you will execute the release pipeline and use the artifact from the previous train pipeline to deploy a model. Normally the release pipeline would be executed when the train pipeline has finished. Therefore, we would have to restart the train pipeline. Due to time constraints we will not do this, but instead trigger the release manually.
 
@@ -679,7 +678,7 @@ In this exercise you will execute the release pipeline and use the artifact from
 
     ![View deployed webservice in Azure Machine Learning studio.](media/devops-test-pipelines-08.png 'Azure Machine Learning studio - Workspace, Deployments') -->
 
-## Exercise 5: Pull a request from the model via Postman
+## Exercise 7: Pull a request from the model via Postman
 
 In this exercise, you will provide the model with data points and receive a prediction back. Now that we have a deployed model, a API call can be made.
 
