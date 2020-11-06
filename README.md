@@ -124,6 +124,8 @@ Download and install postman [link](https://www.postman.com/downloads/). We will
 
 ## Exercise 1: Setup New Project in Azure DevOps
 
+In this exercise you will set up a project in DevOps, import a repository that we have build for you and you will create a connection with the Azure Machine Learning service.
+
 Duration: 20 minutes
 
 ### Task 1: Create New Project
