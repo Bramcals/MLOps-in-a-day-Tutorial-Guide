@@ -21,7 +21,7 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
   - [AI, Experience 6 - MLOps with Azure Machine Learning and Azure DevOps](#ai-experience-6---mlops-with-azure-machine-learning-and-azure-devops)
   - [Technology overview](#technology-overview)
   - [Scenario overview](#scenario-overview)
-  - [Prerequisite: Create a resource group and Azure Machine Learning workspace](#Prerequisite-Create-a-resource-group-and-Azure-Machine-Learning-workspace)
+  <!-- - [Prerequisite: Create a resource group and Azure Machine Learning workspace](#Prerequisite-Create-a-resource-group-and-Azure-Machine-Learning-workspace) -->
   - [Exercise 1: Setup New Project in Azure DevOps](#exercise-1-setup-new-project-in-azure-devops)
     - [Task 1: Create New Project](#task-1-create-new-project)
     - [Task 2: Import Quickstart code from a GitHub Repo](#task-2-import-quickstart-code-from-a-github-repo)
@@ -63,7 +63,7 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
   - [Take-Home Exercise: Test train and Release Pipelines](#Take-Home-Exercise-Test-train-and-Release-Pipelines)
   - [Additional resources and more information](#additional-resources-and-more-information)
 
-## Prerequisite: Create a resource group and Azure Machine Learning workspace
+<!-- ## Prerequisite: Create a resource group and Azure Machine Learning workspace
 
 In order to participate in the MLOps-in-a-day hands-on tutorial for the specialist track, the following three setups are required;
 
@@ -120,7 +120,7 @@ Creating AML may take some time. After creating both the Resource Group and AML,
 
 #### Download & Install Postman
 
-Download and install postman [link](https://www.postman.com/downloads/). We will be using this program to send a request to a deployed model such that a prediction can be received.
+Download and install postman [link](https://www.postman.com/downloads/). We will be using this program to send a request to a deployed model such that a prediction can be received. -->
 
 ## Exercise 1: Setup New Project in Azure DevOps
 
@@ -168,13 +168,16 @@ In this task you import a repository from GitHub. This repo contains mostly of p
 
     a. `LOCATION` = `westeurope`
 
-    b. `RESOURCE_GROUP` = `you resourcegroup name`: Go to your azure portal via portal.azure.com and check the resource group name that you created prior to this tutorial.
+    b. `RESOURCE_GROUP` = `MLOPS-RG`
+    <!--  : Go to your azure portal via portal.azure.com and check the resource group name that you created prior to this tutorial. -->
 
-    c. `WORKSPACE_NAME` = `your workspace (azure machine learning name)`. Go to your azure portal via portal.azure.com and check the AML name (attached to the resource group) that you created prior to this tutorial. If you haven't created a resource group, go to [Prerequisite: Create a resource group and Azure Machine Learning workspace](#Prerequisite-Create-a-resource-group-and-Azure-Machine-Learning-workspace)
+    c. `WORKSPACE_NAME` = `MLOPS-AML`
 
-    d. `BASE_NAME` = name of `WORKSPACE_NAME` in lower case letter and no special characters (e.g. - _ )
+    <!-- . Go to your azure portal via portal.azure.com and check the AML name (attached to the resource group) that you created prior to this tutorial. If you haven't created a resource group, go to [Prerequisite: Create a resource group and Azure Machine Learning workspace](#Prerequisite-Create-a-resource-group-and-Azure-Machine-Learning-workspace) -->
 
-    ![Add variables to variable group section](media/adding-variables.png 'adding variables to variable group')
+    d. `BASE_NAME` = name of workspace name in lower case letter and no special characters: `mlopsaml`
+
+    ![Add variables to variable group section](media/variable-group-vqd.png 'adding variables to variable group')
 
 3. Select `Save`
 
@@ -198,8 +201,6 @@ Once the correct resource group and azure machine learning name have been provid
 
     a. Scope Level: `Subscription`
 
-    b. A pop up show should appear to log in such that your resource group is accessible.
-
     >**Note**: If you are unable to select your **Resource group**, do the following steps:
 
     - Quit the `Service connection` dialog
@@ -210,20 +211,20 @@ Once the correct resource group and azure machine learning name have been provid
     - In step 4, change the `Scope level` to **Subscription**
     - Then a Microsoft Login windows should appear. Provide your login details
     - Now, you should be able to select your resource group and AML workspace
-    - Please remember to name your service connection as `quick-starts-sc-aml`
+    - Please remember to name your service connection as `quick-starts-sc-rg`
     - Grant access permission to all pipelines
 
-    C. Subscription: Select the Azure subscription to use.
+    b. Subscription: `VQD Data Science`
 
-    d. Resource group: This value should match the value you just provided in the library as variable.
+    c. Resource group: This value should match the value you just provided in the library as variable: `MLOPS-RG`
 
-    e. Service connection name: `quick-starts-sc-rg`
+    d. Service connection name: `quick-starts-sc-rg`
 
-    f. Grant access permission to all pipelines: this checkbox must be selected.
+    e. Grant access permission to all pipelines: this checkbox must be selected.
 
-    g. Select `Save`
+    f. Select `Save`
 
-    ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/sc-server-connection-rg.png 'Add an Azure Resource Manager service')
+    ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/sc-rg.png 'Add an Azure Resource Manager service')
 
 ### Task 5: Create new Service Connection with Azure Machine Learning
 
@@ -258,13 +259,13 @@ Now we will create a connection with azure machine learning.
     - Please remember to name your service connection as `quick-starts-sc-aml`
     - Grant access permission to all pipelines
 
-    b. Subscription: Select the Azure subscription to use.
+    b. Subscription: `VQD Data Science`
 
-    > **Note**: It might take up to 30 seconds for the **Subscription** dropdown to be populated with available subscriptions, depending on the number of different subscriptions your account has access to.
+    <!-- > **Note**: It might take up to 30 seconds for the **Subscription** dropdown to be populated with available subscriptions, depending on the number of different subscriptions your account has access to. -->
 
-    c. Resource group: This value should match the value you just provided in the library as variable.
+    c. Resource group: This value should match the value you just provided in the library as variable: `MLOPS-RG`
 
-    d. Machine Learning Workspace: This value should match the value you just provided in the library as variable.
+    d. Machine Learning Workspace: This value should match the value you just provided in the library as variable: `MLOPS-AML`
 
     e. Service connection name: `quick-starts-sc-aml`
 
@@ -272,7 +273,7 @@ Now we will create a connection with azure machine learning.
 
     g. Select `Save`
 
-    ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/sc-server-connection-aml.png 'Add an Azure Resource Manager service')
+    ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/sc-aml.png 'Add an Azure Resource Manager service')
 
     **Note**: If you successfully created the new service connection **goto Exercise 2**.
 
