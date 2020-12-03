@@ -523,9 +523,9 @@ These variables are needed to deploy the model.
 
 **Note**: - Keep the scope for the variables to `Deploy & Test` stage.
 
-    - The name of the Azure region should be the same one that was used to create Azure Machine Learning workspace earlier on.
+    - Make sure the aks_name and service_name include your the number of your account.
 
-![Add four pipeline variables as name value pairs and save.](media/devops-release-pipeline-08.png "Add Pipeline Variables")
+<!-- ![Add four pipeline variables as name value pairs and save.](media/devops-release-pipeline-08.png "Add Pipeline Variables") -->
 
 ### Task 4: Setup Agent Pool for Deploy & Test stage
 
