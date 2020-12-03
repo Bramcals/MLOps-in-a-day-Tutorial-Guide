@@ -513,17 +513,17 @@ Duration: 20 minutes
 
 These variables are needed to deploy the model.
 
-    a. Name: `aks_name` Value: `aks-cluster- add here the number of your account name you used for loging in on this page (provided in the teams chat). When you click in the top right icon of DevOps you can view the account name in case you forgot the number.
+    a. Name: `aks_name` Value: `aks-cluster'
 
     b. Name: `aks_region` Value: should be the same region as the region of your Azure Machine Learning workspace (probably `westeurope`)
 
-    c. Name: `service_name` Value: `compliance-service-` add here the number of your account name as well.
+    c. Name: `service_name` Value: `compliance-service-` add here the number of your account name you used for loging in on this page (provided in the teams chat). When you click in the top right icon of DevOps you can view the account name in case you forgot the number
 
     d. Name: `description` Value: `"Compliance Classifier Web Service"` (Note the double quotes around description value).
 
 **Note**: - Keep the scope for the variables to `Deploy & Test` stage.
 
-    - Make sure the aks_name and service_name include your the number of your account.
+    - Make sure the service_name include your the number of your account.
 
 <!-- ![Add four pipeline variables as name value pairs and save.](media/devops-release-pipeline-08.png "Add Pipeline Variables") -->
 
