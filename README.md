@@ -21,13 +21,12 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
   - [AI, Experience 6 - MLOps with Azure Machine Learning and Azure DevOps](#ai-experience-6---mlops-with-azure-machine-learning-and-azure-devops)
   - [Technology overview](#technology-overview)
   - [Scenario overview](#scenario-overview)
-  <!-- - [Prerequisite: Create a resource group and Azure Machine Learning workspace](#Prerequisite-Create-a-resource-group-and-Azure-Machine-Learning-workspace) -->
+  - [Prerequisite: Create a resource group](#Prerequisite-Create-a-resource-group)
   - [Exercise 1: Setup New Project in Azure DevOps](#exercise-1-setup-new-project-in-azure-devops)
     - [Task 1: Create New Project](#task-1-create-new-project)
     - [Task 2: Import Quickstart code from a GitHub Repo](#task-2-import-quickstart-code-from-a-github-repo)
     - [Task 3: Create a variable group](#task-3-create-a-variable-group)
     - [Task 4: Create new Service Connection with Resource Group](#task-4-create-new-service-connection-with-resource-group)
-    - [Task 5: Create new Service Connection with Azure Machine Learning](#task-5-create-new-service-connection-with-azure-machine-learning)
   - [Exercise 2: Setup and Run the CI Pipeline](#exercise-2-setup-and-run-the-CI-pipeline)
     - [Task 1: Setup the CI Pipeline](#task-1-setup-the-CI-pipeline)
     - [Task 2: Run the CI pipeline](#task-2-run-the-CI-pipeline)
@@ -36,6 +35,7 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
     - [Task 1: Setup the IAC Pipeline](#task-1-setup-the-IAC-pipeline)
     - [Task 2: Run the IAC pipeline](#task-2-run-the-IAC-pipeline)
     - [Task 3: Review output of IAC Pipeline](#task-3-review-output-of-IAC-Pipeline)
+    - [Task 4: Create new Service Connection with Azure Machine Learning](#task-4-create-new-service-connection-with-azure-machine-learning)
   - [Exercise 4: Setup and Run the Train Pipeline](#exercise-4-setup-and-run-the-train-pipeline)
     - [Task 1: Setup Train Pipeline](#task-1-setup-train-pipeline)
     - [Task 2: Run the Train Pipeline](#task-2-run-the-train-pipeline)
@@ -63,64 +63,21 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
   - [Take-Home Exercise: Test train and Release Pipelines](#Take-Home-Exercise-Test-train-and-Release-Pipelines)
   - [Additional resources and more information](#additional-resources-and-more-information)
 
-<!-- ## Prerequisite: Create a resource group and Azure Machine Learning workspace
 
-In order to participate in the MLOps-in-a-day hands-on tutorial for the specialist track, the following three setups are required;
+## Prerequisite: resource group
 
-1. DevOps account.
-2. Azure account with Subscription
+A resource group is a container for resources (Azure services). It is equivalent to a folder that contains files.
 
-    a. With resource group available for use
+__Note__: We have already created a resource group for you, named: `MLOPS-RG-X` (replace `X` with your student number). Continue with Exercise 1.
 
-    b. An Azure Machine Learning within that Resource Group (preferably a new one)
-3. Postman installed on your machine
-
-    NOTE!!! If you have already set up these prerequisites, skip the next steps and continue at Task 1!
-
-#### DevOps account
-
-DevOps is a platform to build pipelines via code. It stores your repository and keeps track of all changes in your codes. A DevOps account can be created by going to the following [link](https://dev.azure.com/). If you already have an account, then you can use that account and create a new organization to complete the tutorial.
-To create an account;
-
-1. Click on “start free”
-2. Use an personal or work email address, can be outlook, g-mail, etc.
-3. After creating an account, create an organization, choose any name you like. The project will be created at the start of the technical tutorial.
-
-#### Microsoft Azure account with Subscription
-
-Microsoft Azure, commonly referred to as Azure, is a cloud computing service created by Microsoft for building, testing, deploying and managing applications and services through Microsoft-managed data centers. A free trial subscription can be obtained via the following [link](https://azure.microsoft.com/en-us/free/). Use the same email address that you just used for creating an DevOps account to get your free subscription on Azure. Fill in your personal details and verification by (credit) card. You won't be charged after the free trail unless you choose to upgrade. Before the end of your 30 first days, you'll be notified and have the chance to upgrade and start paying only for the resources you use beyond the free amounts.
-
-##### Creating a resource group and Azure Machine Learning Workspace
-
-A resource group is needed such that resources can be added to the group. It is equivalent to a folder in a directory in which you store your files.
-
-a. Creating a resource group:
-
-1. Go to the Azure Portal: portal.azure.com, sign in with the account you just created
+To create a resource group:
+1. Go to the Azure Portal: portal.azure.com
 2. Go to home and click on Resource Groups
-3. Click on +Add
-4. Choose your Free Trial Subscription, choose a name for the Resource Group (no longer than 10 characters!). For example your initials + '-MLOps'
-5. Set region to ‘West Europe’
-6. Click on -> Review + Create -> Create
-
-Now that we have created a resource group, we can add resources to it. For the purpose of this workshop, we will add Azure Machine Learning. A services to create, test, deploy and manage machine learning solutions.
-
-b. Adding Azure Machine Learning to the resource group
-
-1. Go to Resource Group by clicking on it (visible within Resource Groups)
-2. Click on +Add within the Resource Group
-3. Search for Azure Machine Learning (AML)
-4. Click on Machine Learning (blue icon) and click on create
-5. Check if the correct resource group is selected (the on that you just created)
-6. Define your workspace name. No longer than 10 Characters, for example: your initials + '-AML'
-7. Set region to 'West Europe' and workspace edition to 'Basic'
-8. Click on -> Review + Create -> create
-
-Creating AML may take some time. After creating both the Resource Group and AML, remember the names that you choose for these two. You will be needing these in the tutorial.
-
-#### Download & Install Postman
-
-Download and install postman [link](https://www.postman.com/downloads/). We will be using this program to send a request to a deployed model such that a prediction can be received. -->
+3. Click on +Create
+4. Choose your Subscription
+5. Choose a name for the Resource Group (no longer than 10 characters!). For example `MLOPS-{your initials}`
+6. Set region to `(Europe) West Europe`
+7. Click on -> Review + Create -> Create
 
 ## Exercise 1: Setup New Project in Azure DevOps
 
@@ -128,11 +85,11 @@ In this exercise you will set up a project in DevOps, import a repository that w
 
 Duration: 20 minutes
 
-### Task 1: Create New Project (Project has already been set up for you, continue to task 2)
+### Task 1: Create New Project (Project has already been set up for you, continue with task 2)
 
 1. Sign in to [Azure DevOps](http://dev.azure.com).
 
-2. Create your own organization our your an existing one. As long as its your own organization. Choose your own name when creating a new organization
+2. Create your own organization or use an existing one. As long as it's your own organization. Choose your own name when creating a new organization
 
 3. Select **New project**.
 
@@ -154,11 +111,9 @@ In this task you import a repository from GitHub. This repository mostly consist
 
    ![Import Quickstart code from a GitHub Repo.](media/devops-project-03.png "Azure DevOps Repos")
 
-2. Provide the following GitHub URL: `https://github.com/Bramcals/MLOps-starter.git` and select **Import**. This should import the code required for the quickstart.
+2. Provide the following GitHub URL: TODO `https://github.com/Bramcals/MLOps-starter.git` and select **Import**. This should import the code required for the quickstart.
 
    ![Provide the above GitHub URL and select import to import the source code.](media/devops-project-04.png "Import a Git repository dialog")
-
-   _Note that if you receive an error while importing the repository, please disable the preview feature `New Repos landing pages` and import the GitHub repository from the old UI, as shown in steps #3, #4, and #5 below._
 
 ### Task 3: Create a variable group
 
@@ -170,20 +125,17 @@ In this task you import a repository from GitHub. This repository mostly consist
 
    a. `LOCATION` = `westeurope`
 
-   b. `RESOURCE_GROUP` = `MLOPS-RG`
-   <!--  : Go to your azure portal via portal.azure.com and check the resource group name that you created prior to this tutorial. -->
+   b. `RESOURCE_GROUP` = `MLOPS-RG-X` (replace `X` with your student number)
 
-   c. `WORKSPACE_NAME` = `MLOPS-AML`
+   c. `WORKSPACE_NAME` = `MLOPS-X-AML` (replace `X` with your student number)
 
-   <!-- . Go to your azure portal via portal.azure.com and check the AML name (attached to the resource group) that you created prior to this tutorial. If you haven't created a resource group, go to [Prerequisite: Create a resource group and Azure Machine Learning workspace](#Prerequisite-Create-a-resource-group-and-Azure-Machine-Learning-workspace) -->
-
-   d. `BASE_NAME` = name of workspace name in lower case letter and no special characters: `mlopsaml`
+   d. `BASE_NAME` = workspace name in lower case letter and no special characters: `mlopsxaml` (replace `x` with your student number)
 
    ![Add variables to variable group section](media/variable-group-vqd.png "adding variables to variable group")
 
 3. Select `Save`
 
-### Task 4: Create new Service Connection with Resource Group (Service connenctions have already been set up for you, continue to exercise 2)
+### Task 4: Create new Service Connection with Resource Group 
 
 Once the correct resource group and Azure Machine Learning name have been provided, a connection can be made. First we will create a connection with the resource group.
 
@@ -212,13 +164,13 @@ Once the correct resource group and Azure Machine Learning name have been provid
    - Perform steps 1 - 3 again
    - In step 4, change the `Scope level` to **Subscription**
    - Then a Microsoft Login windows should appear. Provide your login details
-   - Now, you should be able to select your resource group and AML workspace
-   - Please remember to name your service connection as `quick-starts-sc-rg`
+   - Now, you should be able to select your resource group
+   - Name your service connection: `quick-starts-sc-rg`
    - Grant access permission to all pipelines
 
    b. Subscription: `VQD Data Science`
 
-   c. Resource group: This value should match the value you just provided in the library as a variable: `MLOPS-RG`
+   c. Resource group: This value should match the value you just provided in the library as a variable: `MLOPS-RG-X` (replace `X` with your student number)
 
    d. Service connection name: `quick-starts-sc-rg`
 
@@ -228,56 +180,6 @@ Once the correct resource group and Azure Machine Learning name have been provid
 
    ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/sc-rg.png "Add an Azure Resource Manager service")
 
-### Task 5: Create new Service Connection with Azure Machine Learning (Service connenctions have already been set up for you, continue to exercise 2)
-
-Now we will create a connection with Azure Machine Learning.
-
-1. Select **New service connection**.
-
-   ![Navigate to Project Settings, Service connections section.](media/devops-build-sc-rg.png "Service Connections")
-
-2. Select **Azure Resource Manager**, and then select **Next**.
-
-   ![Select Create Service Connection, Azure Resource Manager.](media/devops-build-pipeline-04.png "Azure Resource Manager")
-
-3. Select **Service principal (automatic)** and then select **Next**.
-
-   ![Select Service principal (automatic), and then select Next.](media/devops-build-pipeline-05.png "Service principal authentication")
-
-4. Provide the following information in the `New Azure service connection` dialog box and then select **Save**:
-
-   a. Scope Level: `Machine Learning Workspace`
-
-   > **Note**: If you are unable to select your **Machine Learning Workspace**, do the following steps:
-
-   - Quit the `New Azure service connection` dialog
-   - Make sure Cookies are allowed by the browser
-   - Refresh or reload the web browser
-   - Click on create new connection
-   - Perform steps 1 - 3 again
-   - In step 4, change the `Scope level` to **Subscription**
-   - Then a Microsoft Login windows should appear. Provide your login details
-   - Now, you should be able to select your resource group and AML workspace
-   - Please remember to name your service connection as `quick-starts-sc-aml`
-   - Grant access permission to all pipelines
-
-   b. Subscription: `VQD Data Science`
-
-   <!-- > **Note**: It might take up to 30 seconds for the **Subscription** dropdown to be populated with available subscriptions, depending on the number of different subscriptions your account has access to. -->
-
-   c. Resource group: This value should match the value you just provided in the library as variable: `MLOPS-RG`
-
-   d. Machine Learning Workspace: This value should match the value you just provided in the library as variable: `MLOPS-AML`
-
-   e. Service connection name: `quick-starts-sc-aml`
-
-   f. Grant access permission to all pipelines: this checkbox must be selected.
-
-   g. Select `Save`
-
-   ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/sc-aml.png "Add an Azure Resource Manager service")
-
-   **Note**: If you successfully created the new service connection **go to Exercise 2**.
 
 ## Exercise 2: Setup and Run the CI Pipeline
 
@@ -335,7 +237,7 @@ In this exercise, the CI will be built. In this pipeline a code quality check wi
 
 ## Exercise 3: Setup and Run the IAC Pipeline
 
-In this exercise, the IAC pipeline will be built. This pipeline will set up and update your resources if needed. In our case, we have asked you to set up your resources (resource group & Azure Machine Learning) prior to this tutorial. This was required because sometimes a significant amount of time is needed to set up these resources. Therefore, in this step you will only update the resources as you would normally do when deploying your newest model.
+In this exercise, the IAC pipeline will be built. This pipeline will create the resources or update if they already exist.
 
 ### Task 1: Setup the IAC Pipeline
 
@@ -377,9 +279,61 @@ In this exercise, the IAC pipeline will be built. This pipeline will set up and 
 
 2. Review the steps
 
-3. Note that Deploy MLOps Resources requires the most time. However, as most resources have already been deployed, this step can still complete relatively quickly.
+3. Note that Deploy MLOps Resources requires most time.
 
    ![Review steps of IAC pipeline.](media/review-steps.png "Review steps")
+
+### Task 4: Create new Service Connection with Azure Machine Learning
+
+Now that the Azure Machine Learning (AML) resource is created, we will create a connection between DevOps and the AML resource.
+
+1. Select **New service connection**.
+
+   ![Navigate to Project Settings, Service connections section.](media/devops-build-sc-rg.png "Service Connections")
+
+2. Select **Azure Resource Manager**, and then select **Next**.
+
+   ![Select Create Service Connection, Azure Resource Manager.](media/devops-build-pipeline-04.png "Azure Resource Manager")
+
+3. Select **Service principal (automatic)** and then select **Next**.
+
+   ![Select Service principal (automatic), and then select Next.](media/devops-build-pipeline-05.png "Service principal authentication")
+
+4. Provide the following information in the `New Azure service connection` dialog box and then select **Save**:
+
+   a. Scope Level: `Machine Learning Workspace`
+
+   > **Note**: If you are unable to select your **Machine Learning Workspace**, do the following steps:
+
+   - Quit the `New Azure service connection` dialog
+   - Make sure Cookies are allowed by the browser
+   - Refresh or reload the web browser
+   - Click on create new connection
+   - Perform steps 1 - 3 again
+   - In step 4, change the `Scope level` to **Subscription**
+   - Then a Microsoft Login windows should appear. Provide your login details
+   - Now, you should be able to select your resource group and AML workspace
+   - Name your service connection: `quick-starts-sc-aml`
+   - Grant access permission to all pipelines
+
+   b. Subscription: `VQD Data Science`
+
+   <!-- > **Note**: It might take up to 30 seconds for the **Subscription** dropdown to be populated with available subscriptions, depending on the number of different subscriptions your account has access to. -->
+
+   c. Resource group: This value should match the value you just provided in the library as variable: `MLOPS-RG-X` (replace `X` with your student number) 
+
+   d. Machine Learning Workspace: This value should match the value you just provided in the library as variable: `MLOPS-X-AML` (replace `X` with your student number)
+
+   e. Service connection name: `quick-starts-sc-aml`
+
+   f. Grant access permission to all pipelines: this checkbox must be selected.
+
+   g. Select `Save`
+
+   ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/sc-aml.png "Add an Azure Resource Manager service")
+
+   **Note**: If you successfully created the new service connection **go to Exercise 2**.
+
 
 ## Exercise 4: Setup and Run the Train Pipeline
 
@@ -425,7 +379,7 @@ Duration: 25 minutes
 
 5. Select **Run Pipeline** and select **Run** to start running your train pipeline.
 
-6. Monitor the train run. The train pipeline, for the first run, will take around 20 minutes to run.
+6. Monitor the train run. The train pipeline, for the first run, will take around 10 minutes to run.
 
    ![Monitor your train pipeline. It will take around 20 minutes to run.](media/devops-build-pipeline-12.png "Monitor train Pipeline")
 
