@@ -21,7 +21,7 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
   - [AI, Experience 6 - MLOps with Azure Machine Learning and Azure DevOps](#ai-experience-6---mlops-with-azure-machine-learning-and-azure-devops)
   - [Technology overview](#technology-overview)
   - [Scenario overview](#scenario-overview)
-  - [Prerequisite: Create a resource group](#Prerequisite-Create-a-resource-group)
+  - [Prerequisite: resource group](#Prerequisite:-resource-group)
   - [Exercise 1: Setup New Project in Azure DevOps](#exercise-1-setup-new-project-in-azure-devops)
     - [Task 1: Create New Project](#task-1-create-new-project)
     - [Task 2: Import Quickstart code from a GitHub Repo](#task-2-import-quickstart-code-from-a-github-repo)
@@ -81,7 +81,7 @@ To create a resource group:
 
 ## Exercise 1: Setup New Project in Azure DevOps
 
-In this exercise you will set up a project in DevOps, import a repository that we have build for you and you will create a connection with the Azure Machine Learning service.
+In this exercise you will set up a project in DevOps and import a repository that we have build for you.
 
 Duration: 20 minutes
 
@@ -121,7 +121,7 @@ In this task you import a repository from GitHub. This repository mostly consist
 
    ![Go to create variable group section](media/variable-group.png "Create variable group")
 
-2. Name the variable group; `quickstart-variablegroup` and add the following variables;
+2. Name the variable group: `quickstart-variablegroup` and add the following variables;
 
    a. `LOCATION` = `westeurope`
 
@@ -137,7 +137,7 @@ In this task you import a repository from GitHub. This repository mostly consist
 
 ### Task 4: Create new Service Connection with Resource Group 
 
-Once the correct resource group and Azure Machine Learning name have been provided, a connection can be made. First we will create a connection with the resource group.
+We make a connection between DevOps and the resource group.
 
 1. From the left navigation select **Project settings** and then select **Service connections**.
 
@@ -185,6 +185,8 @@ Once the correct resource group and Azure Machine Learning name have been provid
 
 In this exercise, the CI will be built. In this pipeline a code quality check will be performed on all Python files in the repository. Unit tests can also be performed in this pipeline. In unit testing you break down the functionality of your program into discrete testable behaviors that you can test as individual units. However, for the sake of this tutorial, we will only do a code quality check.
 
+### Task 1: Setup the CI Pipeline
+
 1. From left navigation select **Pipelines, Pipelines** and then select **Create pipeline**.
 
    ![Navigate to Pipelines, Pipelines, and then select Create pipeline](media/devops-build-pipeline-07.png "Create Build Pipeline")
@@ -203,7 +205,7 @@ In this exercise, the CI will be built. In this pipeline a code quality check wi
 
 5. Review your pipeline YAML
 
-   a. Note that Python is installed to perform this step
+   a. The first step is to install Python
 
    b. The main step in this pipeline is the code quality check. It is also possible to create a report of this step. However, this is left out of scope.
 
@@ -237,7 +239,7 @@ In this exercise, the CI will be built. In this pipeline a code quality check wi
 
 ## Exercise 3: Setup and Run the IAC Pipeline
 
-In this exercise, the IAC pipeline will be built. This pipeline will create the resources or update if they already exist.
+In this exercise, the IAC pipeline will be built. This pipeline will create the resources or update them if they already exist.
 
 ### Task 1: Setup the IAC Pipeline
 
@@ -332,8 +334,6 @@ Now that the Azure Machine Learning (AML) resource is created, we will create a 
 
    ![Provide connection name, Azure Resource Group, Machine Learning Workspace, and then select Save. The resource group and machine learning workspace must match the value you provided in the YAML file.](media/sc-aml.png "Add an Azure Resource Manager service")
 
-   **Note**: If you successfully created the new service connection **go to Exercise 2**.
-
 
 ## Exercise 4: Setup and Run the Train Pipeline
 
@@ -359,9 +359,16 @@ Duration: 25 minutes
 
    b. Create the AML Compute target to run your master pipeline for model training and model evaluation.
 
-   c. Run the master pipeline. The master pipeline has two steps: (1) Train the machine learning model, and (2) Evaluate the trained machine learning model. These steps are submitted to AML. On AML we have just created a compute that will execute the two steps. The results of the two steps can be seen in the Azure Machine Learning workspace. In the training step, the model is trained with an XGboosting algorithm.
+   c. Run the master pipeline. The master pipeline has two steps: 
+   
+      1. Train the machine learning model
+      2. Evaluate the trained machine learning model. 
+      
+      These steps are submitted to AML. On AML we have just created a compute that will execute the two steps. The results of the two steps can be seen in the Azure Machine Learning workspace. 
+      
+      In the training step, the model is trained with an XGboosting algorithm.
 
-   The evaluation step evaluates if the new model performance is better than the currently deployed model. If the new model performance is improved, the evaluate step will create a new Image for deployment. The results of the evaluation step will be saved in a file called `eval_info.json` that will be made available for the release pipeline. You can review the code for the master pipeline and its steps in `aml_service/pipelines_master.py`, `scripts/train.py`, and `scripts/evaluate.py`.
+      The evaluation step evaluates if the new model performance is better than the currently deployed model. If the new model performance is improved, the evaluate step will create a new Image for deployment. The results of the evaluation step will be saved in a file called `eval_info.json` that will be made available for the release pipeline. You can review the code for the master pipeline and its steps in `aml_service/pipelines_master.py`, `scripts/train.py`, and `scripts/evaluate.py`.
 
    d. Publish the train artifacts. The `snapshot of the repository`, `config.json`, and `eval_info.json` files are published as train artifacts and thus can be made available for the release pipeline.
 
@@ -379,7 +386,7 @@ Duration: 25 minutes
 
 5. Select **Run Pipeline** and select **Run** to start running your train pipeline.
 
-6. Monitor the train run. The train pipeline, for the first run, will take around 10 minutes to run.
+6. Monitor the train run. The train pipeline can take up to 20 minutes to run. Especially the first run can be slow.
 
    ![Monitor your train pipeline. It will take around 20 minutes to run.](media/devops-build-pipeline-12.png "Monitor train Pipeline")
 
