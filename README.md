@@ -1,4 +1,4 @@
-# Data & AI Tech Immersion Workshop – Product Review Guide and Lab Instructions
+# Data & AI Tech Immersion Workshop - Product Review Guide and Lab Instructions
 
 ## Scenario overview
 
@@ -17,10 +17,9 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
 
 ## AI, Experience - MLOps with Azure Machine Learning and Azure DevOps
 
-- [Data &amp; AI Tech Immersion Workshop – Product Review Guide and Lab Instructions](#data-amp-ai-tech-immersion-workshop-%e2%80%93-product-review-guide-and-lab-instructions)
-  - [AI, Experience 6 - MLOps with Azure Machine Learning and Azure DevOps](#ai-experience-6---mlops-with-azure-machine-learning-and-azure-devops)
-  - [Technology overview](#technology-overview)
+- [Data &amp; AI Tech Immersion Workshop - Product Review Guide and Lab Instructions](#data-%26-ai-tech-immersion-workshop-%2d-product-review-guide-and-lab-instructions)
   - [Scenario overview](#scenario-overview)
+  - [Technology overview](#technology-overview)
   - [Prerequisite: resource group](#Prerequisite:-resource-group)
   - [Exercise 1: Setup New Project in Azure DevOps](#exercise-1-setup-new-project-in-azure-devops)
     - [Task 1: Create New Project](#task-1-create-new-project)
@@ -43,21 +42,21 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
     - [Task 4: Review Train Outputs](#task-4-review-train-outputs)
   - [Exercise 5: Setup the Release Pipeline](#exercise-5-setup-the-release-pipeline)
     - [Task 1: Create an Empty Job](#task-1-create-an-empty-job)
-    - [Task 2: Add Build Artifact](#task-2-add-build-artifact)
-    - [Task 3: Add Variables to Deploy &amp; Test stage](#task-3-add-variables-to-deploy-amp-test-stage)
-    - [Task 4: Setup Agent Pool for Deploy &amp; Test stage](#task-4-setup-agent-pool-for-deploy-amp-test-stage)
+    - [Task 2: Add Train Artifact](#task-2-add-train-artifact)
+    - [Task 3: Add Variables to Deploy &amp; Test stage](#task-3-add-variables-to-deploy-%26-test-stage)
+    - [Task 4: Setup Agent Pool for Deploy &amp; Test stage](#task-4-setup-agent-pool-for-deploy-%26-test-stage)
     - [Task 5: Add Use Python Version task](#task-5-add-use-python-version-task)
     - [Task 6: Add Install Requirements task](#task-6-add-install-requirements-task)
-    - [Task 7: Add Deploy &amp; Test Webservice task](#task-7-add-deploy-amp-test-webservice-task)
+    - [Task 7: Add Deploy &amp; Test Webservice task](#task-7-add-deploy-%26-test-webservice-task)
     - [Task 8: Define Deployment Trigger](#task-8-define-deployment-trigger)
     - [Task 9: Enable Continuous Deployment Trigger](#task-9-enable-continuous-deployment-trigger)
     - [Task 10: Save the Release Pipeline](#task-10-save-the-release-pipeline)
   - [Exercise 6: Run the Release Pipeline](#Exercise-6-run-the-release-pipeline)
     - [Task 1: Start Release pipeline](#task-1-start-release-pipeline)
     - [Task 2: Monitor Release Pipeline](#task-2-monitor-release-pipeline)
-  - [Exercise 7: Pull a request from the model via Postman](#exercise-7-pull-request)
-    - [Task 1: Get URI and Primary key of model](#task-1-get-uri)
-    - [Task 2: Pull a request from the deployed model via Postman](#task-2-pull-request-in-postman)
+  - [Exercise 7: Pull a request from the model via Postman](#exercise-7-query-the-model-via-postman)
+    - [Task 1: Get URI and Primary key of model](#task-1-get-uri-and-primary-key-of-model)
+    - [Task 2: Query the deployed model via Postman](#task-2-query-the-deployed-model-via-postman)
   - [Wrap-up](#wrap-up)
   - [Deletion Exercise: Delete resource in the Azure Portal](#Deletion-exercise-delete-resource-in-the-Azure-Portal)
   - [Take-Home Exercise: Test train and Release Pipelines](#Take-Home-Exercise-Test-train-and-Release-Pipelines)
@@ -85,7 +84,9 @@ In this exercise you will set up a project in DevOps and import a repository tha
 
 Duration: 20 minutes
 
-### Task 1: Create New Project (Project has already been set up for you, continue with task 2)
+### Task 1: Create New Project 
+
+__Note__: Project has already been set up for you, continue with task 2.
 
 1. Sign in to [Azure DevOps](http://dev.azure.com).
 
