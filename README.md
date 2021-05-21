@@ -67,14 +67,14 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
 
 A resource group is a container for resources (Azure services). It is equivalent to a folder that contains files.
 
-__Note__: We have already created a resource group for you, named: `MLOPS-RG-X` (replace `X` with your student number). Continue with Exercise 1.
+__Note__: We have already created a resource group for you, named: `RGXXXXXX` (replace `XXXXXX` with your student number). Continue with Exercise 1.
 
 To create a resource group:
 1. Go to the Azure Portal: portal.azure.com
 2. Go to home and click on Resource Groups
 3. Click on +Create
 4. Choose your Subscription
-5. Choose a name for the Resource Group (no longer than 10 characters!). For example `MLOPS-{your initials}`
+5. Choose a name for the Resource Group (no longer than 10 characters!). For example `RG-{your initials}`
 6. Set region to `(Europe) West Europe`
 7. Click on -> Review + Create -> Create
 
@@ -126,11 +126,11 @@ In this task you import a repository from GitHub. This repository mostly consist
 
    a. `LOCATION` = `westeurope`
 
-   b. `RESOURCE_GROUP` = `MLOPS-RG-X` (replace `X` with your student number)
+   b. `RESOURCE_GROUP` = `RGXXXXXX` (replace `XXXXXX` with your student number)
 
-   c. `WORKSPACE_NAME` = `MLOPS-X-AML` (replace `X` with your student number)
+   c. `WORKSPACE_NAME` = `SNXXXXXX` (replace `XXXXXX` with your student number)
 
-   d. `BASE_NAME` = workspace name in lower case letter and no special characters: `mlopsxaml` (replace `x` with your student number)
+   d. `BASE_NAME` = workspace name in lower case letter and no special characters: `snxxxxxx` (replace `xxxxxx` with your student number)
 
    ![Add variables to variable group section](media/variable-group-vqd.png "adding variables to variable group")
 
@@ -171,7 +171,7 @@ We make a connection between DevOps and the resource group.
 
    b. Subscription: `VQD Data Science`
 
-   c. Resource group: This value should match the value you just provided in the library as a variable: `MLOPS-RG-X` (replace `X` with your student number)
+   c. Resource group: This value should match the value you just provided in the library as a variable: `RGXXXXXX` (replace `XXXXXX` with your student number)
 
    d. Service connection name: `quick-starts-sc-rg`
 
@@ -323,9 +323,9 @@ Now that the Azure Machine Learning (AML) resource is created, we will create a 
 
    <!-- > **Note**: It might take up to 30 seconds for the **Subscription** dropdown to be populated with available subscriptions, depending on the number of different subscriptions your account has access to. -->
 
-   c. Resource group: This value should match the value you just provided in the library as variable: `MLOPS-RG-X` (replace `X` with your student number) 
+   c. Resource group: This value should match the value you just provided in the library as variable: `RGXXXXXX` (replace `XXXXXX` with your student number) 
 
-   d. Machine Learning Workspace: This value should match the value you just provided in the library as variable: `MLOPS-X-AML` (replace `X` with your student number)
+   d. Machine Learning Workspace: This value should match the value you just provided in the library as variable: `SNXXXXXX` (replace `XXXXXX` with your student number)
 
    e. Service connection name: `quick-starts-sc-aml`
 
