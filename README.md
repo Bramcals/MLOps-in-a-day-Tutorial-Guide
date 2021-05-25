@@ -67,7 +67,7 @@ Azure Machine Learning uses a Machine Learning Operations (MLOps) approach, whic
 
 A resource group is a container for resources (Azure services). It is equivalent to a folder that contains files.
 
-__Note__: We have already created a resource group for you, named: `RGXXXXXX` (replace `XXXXXX` with your student number). Continue with Exercise 1.
+__Note__: We have already created a resource group for you, named: `RG-XXXXXX` (replace `XXXXXX` with your student number). Continue with Exercise 1.
 
 To create a resource group:
 1. Go to the Azure Portal: portal.azure.com
@@ -126,7 +126,7 @@ In this task you import a repository from GitHub. This repository mostly consist
 
    a. `LOCATION` = `westeurope`
 
-   b. `RESOURCE_GROUP` = `RGXXXXXX` (replace `XXXXXX` with your student number)
+   b. `RESOURCE_GROUP` = `RG-XXXXXX` (replace `XXXXXX` with your student number)
 
    c. `WORKSPACE_NAME` = `SNXXXXXX` (replace `XXXXXX` with your student number)
 
@@ -171,7 +171,7 @@ We make a connection between DevOps and the resource group.
 
    b. Subscription: `VQD Data Science`
 
-   c. Resource group: This value should match the value you just provided in the library as a variable: `RGXXXXXX` (replace `XXXXXX` with your student number)
+   c. Resource group: This value should match the value you just provided in the library as a variable: `RG-XXXXXX` (replace `XXXXXX` with your student number)
 
    d. Service connection name: `quick-starts-sc-rg`
 
@@ -323,7 +323,7 @@ Now that the Azure Machine Learning (AML) resource is created, we will create a 
 
    <!-- > **Note**: It might take up to 30 seconds for the **Subscription** dropdown to be populated with available subscriptions, depending on the number of different subscriptions your account has access to. -->
 
-   c. Resource group: This value should match the value you just provided in the library as variable: `RGXXXXXX` (replace `XXXXXX` with your student number) 
+   c. Resource group: This value should match the value you just provided in the library as variable: `RG-XXXXXX` (replace `XXXXXX` with your student number) 
 
    d. Machine Learning Workspace: This value should match the value you just provided in the library as variable: `SNXXXXXX` (replace `XXXXXX` with your student number)
 
