@@ -655,7 +655,7 @@ Duration: 5 minutes
 
 8. Press send and examine the output
 
-9. If the models predicts a 0, the car complies to the government regulations. If 1 is predicted, the model predicts that the car not complies to the regulations and probably be an old car with a relatively high carbon footprint.
+9. If the models predicts a 0, the car complies to the government regulations. If 1 is predicted, the model predicts that the car does not comply to the regulations and probably be an old car with a relatively high carbon footprint.
 
 ## Wrap-up
 
